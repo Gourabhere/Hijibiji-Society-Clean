@@ -1,0 +1,7 @@
+{
+  "name": "SocietyClean Monitor",
+  "description": "A housekeeping monitoring app for residential societies. Features AI-powered cleanliness verification, task tracking for staff, supply management, and manager dashboards.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
