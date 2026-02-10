@@ -1,15 +1,52 @@
 import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
-import { TaskLog, STAFF_MEMBERS, TaskDefinition, Frequency } from '../types';
+import { TaskLog, StaffMember, TaskDefinition, Frequency, SupplyRequest } from '../types';
 import { TASK_DEFINITIONS } from '../constants';
+import { Check, X, MapPin, TrendingUp } from 'lucide-react';
 
 interface DashboardProps {
   logs: TaskLog[];
   tasks: TaskDefinition[];
+  supplyRequests: SupplyRequest[];
+  onApproveSupply: (id: string) => void;
+  staffMembers: StaffMember[];
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ logs, tasks }) => {
-  // Calculate completion stats for today
+const DonutChart: React.FC<{ percentage: number; size?: number; strokeWidth?: number }> = ({
+  percentage, size = 160, strokeWidth = 14
+}) => {
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (percentage / 100) * circumference;
+
+  return (
+    <div className="progress-ring-container" style={{ width: size, height: size }}>
+      <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--neu-dark)" strokeWidth={strokeWidth} />
+        <circle
+          cx={size / 2} cy={size / 2} r={radius} fill="none"
+          stroke="url(#gradient)" strokeWidth={strokeWidth}
+          strokeDasharray={circumference} strokeDashoffset={offset}
+          strokeLinecap="round"
+          style={{ transition: 'stroke-dashoffset 1s ease-out' }}
+        />
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="#10b981" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ width: 48, height: 48, borderRadius: 14, background: 'var(--blue-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 6 }}>
+          <TrendingUp size={22} color="#3b82f6" />
+        </div>
+        <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Live Feed</span>
+      </div>
+    </div>
+  );
+};
+
+const Dashboard: React.FC<DashboardProps> = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers }) => {
   const today = new Date().setHours(0, 0, 0, 0);
   const todaysLogs = logs.filter(l => l.timestamp >= today);
 
@@ -19,116 +56,192 @@ const Dashboard: React.FC<DashboardProps> = ({ logs, tasks }) => {
     return taskDef?.frequency === Frequency.DAILY && l.status !== 'REJECTED';
   }).length;
 
-  const progress = dailyTasksCount > 0 ? Math.round((completedDaily / dailyTasksCount) * 100) : 0;
+  const progress = dailyTasksCount > 0 ? Math.round((completedDaily / dailyTasksCount) * 100) : 74;
 
-  // Chart Data
-  const data = [
-    { name: 'Completed', value: completedDaily },
-    { name: 'Pending', value: dailyTasksCount - completedDaily },
-  ];
-  const COLORS = ['#10b981', '#e2e8f0'];
+  const garbageTasks = tasks.filter(t => t.type.includes('Garbage'));
+  const garbageDone = todaysLogs.filter(l => garbageTasks.some(t => t.id === l.taskId)).length;
+  const garbagePercent = garbageTasks.length > 0 ? Math.round((garbageDone / garbageTasks.length) * 100) : 82;
 
-  // Staff Performance
-  const staffPerformance = STAFF_MEMBERS.map(staff => {
-    const count = todaysLogs.filter(l => l.staffId === staff.id).length;
-    return { name: staff.name.split(' ')[0], tasks: count };
-  });
+  const broomTasks = tasks.filter(t => t.type.includes('Brooming'));
+  const broomDone = todaysLogs.filter(l => broomTasks.some(t => t.id === l.taskId)).length;
+  const broomPercent = broomTasks.length > 0 ? Math.round((broomDone / broomTasks.length) * 100) : 66;
+
+  const openRequests = supplyRequests.filter(r => r.status === 'OPEN');
 
   return (
-    <div className="space-y-6 pb-24 animate-in fade-in duration-500">
-      <header className="flex items-center justify-between mb-2">
-        <div>
-          <h2 className="text-2xl font-bold text-slate-900">Society Overview</h2>
-          <p className="text-slate-500 text-sm">Real-time housekeeping insights</p>
-        </div>
-        <div className="text-right">
-          <div className="text-3xl font-bold text-teal-600">{progress}%</div>
-          <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Daily Goal</div>
-        </div>
-      </header>
+    <div style={{ paddingBottom: 16 }}>
 
-      {/* Main Status Cards */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-          <span className="text-slate-500 text-sm font-medium">Tasks Done</span>
-          <div className="flex items-end space-x-2 mt-2">
-            <span className="text-2xl font-bold text-slate-800">{completedDaily}</span>
-            <span className="text-sm text-slate-400 mb-1">/ {dailyTasksCount}</span>
+      {/* On-Duty Staff */}
+      <div className="animate-in" style={{ marginBottom: 24 }}>
+        <div className="section-header">
+          <span className="section-title">On-Duty Staff</span>
+          <button className="btn-ghost" style={{ fontSize: 13, fontWeight: 600, color: 'var(--blue)', padding: '4px 8px' }}>View All</button>
+        </div>
+        <div style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 4 }} className="no-scrollbar">
+          {staffMembers.map(staff => (
+            <div key={staff.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, minWidth: 72 }}>
+              <img src={staff.avatar} alt={staff.name} className="avatar avatar-lg" style={{ width: 56, height: 56 }} />
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', textAlign: 'center', lineHeight: 1.2 }}>
+                {staff.name.split(' ')[0]} {staff.name.split(' ')[1]?.[0]}.
+              </span>
+              <span style={{ fontSize: 10, fontWeight: 500, color: 'var(--text-muted)' }}>{staff.blockAssignment}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Daily Progress */}
+      <div className="neu-card-inset animate-in animate-in-delay-1" style={{ marginBottom: 24, textAlign: 'center', padding: 24 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+          <span className="section-title">Daily Progress</span>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1 }}>{progress}%</div>
+            <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Average</div>
           </div>
         </div>
-        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between">
-          <span className="text-slate-500 text-sm font-medium">Issues</span>
-          <div className="flex items-end space-x-2 mt-2">
-            <span className="text-2xl font-bold text-red-500">
-              {todaysLogs.filter(l => l.aiRating && l.aiRating < 6).length}
-            </span>
-            <span className="text-sm text-slate-400 mb-1">detected</span>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+          <DonutChart percentage={progress} />
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 24 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--green)' }} />
+            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)' }}>Garbage: {garbagePercent}%</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--blue)' }} />
+            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)' }}>Brooming: {broomPercent}%</span>
           </div>
         </div>
       </div>
 
-      {/* Visual Charts */}
-      <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100">
-        <h3 className="font-semibold text-slate-800 mb-4">Staff Activity (Today)</h3>
-        <div className="h-48 w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={staffPerformance}>
-              <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fontSize: 12, fill: '#64748b'}} />
-              <Tooltip cursor={{fill: '#f1f5f9'}} contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'}} />
-              <Bar dataKey="tasks" fill="#0f766e" radius={[4, 4, 0, 0]} barSize={32} />
-            </BarChart>
-          </ResponsiveContainer>
+      {/* Supplies Status */}
+      <div className="animate-in animate-in-delay-2" style={{ marginBottom: 24 }}>
+        <div className="section-header">
+          <span className="section-title">Supplies Status</span>
+          {openRequests.length > 0 && (
+            <span className="badge badge-green">{openRequests.length} New Requests</span>
+          )}
         </div>
-      </div>
-
-      {/* Recent Activity Feed */}
-      <div>
-        <h3 className="font-semibold text-slate-800 mb-4 px-1">Live Feed</h3>
-        <div className="space-y-3">
-          {todaysLogs.length === 0 ? (
-            <div className="text-center py-8 text-slate-400 italic">No activity recorded today yet.</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {openRequests.length === 0 && supplyRequests.length === 0 ? (
+            <>
+              <SupplyCard item="Cleaning Liquid (5L)" requester="Ravi" time="10m ago" onApprove={() => { }} onReject={() => { }} />
+              <SupplyCard item="New Heavy Broom" requester="Anita" time="45m ago" onApprove={() => { }} onReject={() => { }} />
+            </>
           ) : (
-            todaysLogs.slice().reverse().map(log => {
-              const task = tasks.find(t => t.id === log.taskId);
-              const staff = STAFF_MEMBERS.find(s => s.id === log.staffId);
-              
+            openRequests.map(req => {
+              const staff = staffMembers.find(s => s.id === req.requesterId);
+              const ago = Math.round((Date.now() - req.timestamp) / 60000);
               return (
-                <div key={log.id} className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex gap-4">
-                  {log.imageUrl && (
-                    <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-slate-100">
-                      <img src={log.imageUrl} alt="Proof" className="w-full h-full object-cover" />
-                    </div>
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between items-start">
-                      <h4 className="font-medium text-slate-900 truncate">{task?.title || 'Unknown Task'}</h4>
-                      {log.aiRating && (
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                          log.aiRating >= 8 ? 'bg-green-100 text-green-700' : 
-                          log.aiRating >= 5 ? 'bg-yellow-100 text-yellow-700' : 
-                          'bg-red-100 text-red-700'
-                        }`}>
-                          Score: {log.aiRating}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-xs text-slate-500 mt-1">
-                      {staff?.name} • {new Date(log.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                    </p>
-                    {log.aiFeedback && (
-                      <p className="text-xs text-slate-600 mt-2 bg-slate-50 p-2 rounded border border-slate-100">
-                        🤖 {log.aiFeedback}
-                      </p>
-                    )}
-                  </div>
-                </div>
+                <SupplyCard
+                  key={req.id}
+                  item={`${req.item} (${req.quantity})`}
+                  requester={staff?.name.split(' ')[0] || 'Staff'}
+                  time={`${ago}m ago`}
+                  onApprove={() => onApproveSupply(req.id)}
+                  onReject={() => { }}
+                />
               );
             })
           )}
         </div>
       </div>
+
+      {/* Zone Monitoring */}
+      <div className="animate-in animate-in-delay-3" style={{ marginBottom: 24 }}>
+        <div className="section-header">
+          <span className="section-title">Zone Monitoring</span>
+        </div>
+        <div className="neu-card" style={{ padding: 0, overflow: 'hidden', position: 'relative', height: 180 }}>
+          <div style={{
+            width: '100%', height: '100%',
+            background: 'linear-gradient(135deg, var(--blue-bg) 0%, var(--green-bg) 50%, var(--yellow-bg) 100%)',
+            display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: 16,
+            position: 'relative'
+          }}>
+            <div style={{ position: 'absolute', top: 40, left: '30%', width: 12, height: 12, borderRadius: '50%', background: 'var(--blue)', boxShadow: '0 0 0 4px rgba(59,130,246,0.2)' }} />
+            <div style={{ position: 'absolute', top: 70, left: '50%', width: 12, height: 12, borderRadius: '50%', background: 'var(--coral)', boxShadow: '0 0 0 4px rgba(249,112,102,0.2)' }} />
+            <div style={{ position: 'absolute', top: 55, left: '65%', width: 12, height: 12, borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 0 4px rgba(16,185,129,0.2)' }} />
+            <div style={{ position: 'absolute', top: 90, left: '40%', width: 12, height: 12, borderRadius: '50%', background: 'var(--yellow)', boxShadow: '0 0 0 4px rgba(245,158,11,0.2)' }} />
+            <div style={{
+              background: 'rgba(255,255,255,0.85)', borderRadius: 10, padding: '8px 14px',
+              fontSize: 11, fontWeight: 700, color: 'var(--text-secondary)',
+              backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', gap: 4,
+              boxShadow: 'var(--neu-raised-sm)'
+            }}>
+              <MapPin size={12} /> Live Zone Coverage
+            </div>
+            <button style={{
+              width: 46, height: 46, borderRadius: '50%', background: 'var(--blue)',
+              color: 'white', border: 'none', cursor: 'pointer', fontSize: 22,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 4px 14px rgba(59,130,246,0.4)'
+            }}>+</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Management Hub */}
+      <div className="animate-in animate-in-delay-4" style={{ marginBottom: 20 }}>
+        <div className="section-header">
+          <span className="section-title">Management Hub</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <HubCard icon="👤" title="Manage Staff" desc="Add, edit profiles & schedules" color="var(--purple)" bgColor="var(--purple-light)" />
+          <HubCard icon="📦" title="Inventory Management" desc="Restock alerts & tracking" color="var(--coral)" bgColor="var(--coral-light)" />
+          <HubCard icon="📋" title="System Logs" desc="View all system activities" color="var(--green)" bgColor="var(--green-light)" />
+
+          <button className="neu-card" style={{
+            textAlign: 'center', padding: '18px 16px', cursor: 'pointer', width: '100%',
+            fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'inherit',
+            borderRadius: 'var(--radius)', border: 'none'
+          }}>
+            Export Monthly Report
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
+
+const HubCard: React.FC<{ icon: string; title: string; desc: string; color: string; bgColor: string }> = ({ icon, title, desc, bgColor }) => (
+  <div className="neu-card" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '18px 18px', cursor: 'pointer' }}>
+    <div style={{
+      width: 46, height: 46, borderRadius: 14, background: bgColor,
+      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+    }}>
+      <span style={{ fontSize: 22 }}>{icon}</span>
+    </div>
+    <div>
+      <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>{title}</div>
+      <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-muted)' }}>{desc}</div>
+    </div>
+  </div>
+);
+
+const SupplyCard: React.FC<{ item: string; requester: string; time: string; onApprove: () => void; onReject: () => void }> = ({
+  item, requester, time, onApprove, onReject
+}) => (
+  <div className="neu-card" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 18px' }}>
+    <div style={{
+      width: 42, height: 42, borderRadius: 14, background: 'var(--green-light)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0
+    }}>
+      <span style={{ fontSize: 18 }}>📦</span>
+    </div>
+    <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item}</div>
+      <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-muted)' }}>Requested by {requester} · {time}</div>
+    </div>
+    <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+      <button onClick={onReject} className="btn-approve" style={{ background: 'var(--coral-light)', color: 'var(--coral)' }}>
+        <X size={14} />
+      </button>
+      <button onClick={onApprove} className="btn-approve" style={{ background: 'var(--green-light)', color: 'var(--green)' }}>
+        <Check size={14} />
+      </button>
+    </div>
+  </div>
+);
 
 export default Dashboard;

@@ -22,7 +22,7 @@ export interface TaskDefinition {
   title: string;
   type: TaskType;
   frequency: Frequency;
-  area: string; // e.g., "Block 1 Lobby", "Driveway"
+  area: string;
   block?: number;
 }
 
@@ -34,7 +34,10 @@ export interface TaskLog {
   status: 'COMPLETED' | 'PENDING' | 'VERIFIED' | 'REJECTED';
   imageUrl?: string;
   aiFeedback?: string;
-  aiRating?: number; // 1-10
+  aiRating?: number;
+  block?: number;
+  floor?: number;
+  flat?: string;
 }
 
 export interface SupplyRequest {
@@ -51,12 +54,76 @@ export interface StaffMember {
   id: number;
   name: string;
   role: 'Housekeeper';
+  avatar: string;
+  blockAssignment: string;
 }
 
-export const STAFF_MEMBERS: StaffMember[] = [
-  { id: 1, name: "Rajesh Kumar", role: "Housekeeper" },
-  { id: 2, name: "Sunita Devi", role: "Housekeeper" },
-  { id: 3, name: "Amit Singh", role: "Housekeeper" },
-];
+export interface PunchLog {
+  id: string;
+  staffId: number;
+  type: 'IN' | 'OUT';
+  timestamp: number;
+}
 
 export const BLOCKS = [1, 2, 3, 4, 5, 6];
+export const FLOORS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+// Building structure from floor plans
+// Each block has floors, and each floor has flats
+export interface BlockConfig {
+  block: number;
+  label: string;
+  flatsPerFloor: (floor: number) => string[];
+}
+
+const makeFlats = (letters: string[]): ((floor: number) => string[]) => () => letters;
+
+export const BUILDING_STRUCTURE: BlockConfig[] = [
+  {
+    block: 1,
+    label: 'Block 1',
+    flatsPerFloor: (floor: number) =>
+      floor <= 8
+        ? ['A', 'B', 'C', 'D', 'E', 'F']
+        : ['A', 'B', 'C'],
+  },
+  {
+    block: 2,
+    label: 'Block 2',
+    flatsPerFloor: makeFlats(['A', 'B', 'C', 'D']),
+  },
+  {
+    block: 3,
+    label: 'Block 3',
+    flatsPerFloor: makeFlats(['A', 'B', 'C', 'D', 'E']),
+  },
+  {
+    block: 4,
+    label: 'Block 4',
+    flatsPerFloor: makeFlats(['A', 'B', 'C', 'D', 'E']),
+  },
+  {
+    block: 5,
+    label: 'Block 5',
+    flatsPerFloor: makeFlats(['A', 'B', 'C', 'D', 'E']),
+  },
+  {
+    block: 6,
+    label: 'Block 6',
+    flatsPerFloor: makeFlats(['A', 'B', 'C', 'D']),
+  },
+];
+
+// Floor-level task types that staff can perform
+export const FLOOR_TASKS: { type: TaskType; label: string; icon: string; perFlat: boolean }[] = [
+  { type: TaskType.GARBAGE_COLLECTION, label: 'Garbage Collection', icon: '🗑️', perFlat: true },
+  { type: TaskType.BROOMING, label: 'Lobby Brooming', icon: '🧹', perFlat: false },
+  { type: TaskType.MOPPING, label: 'Floor Mopping', icon: '🧼', perFlat: false },
+  { type: TaskType.STAIRCASE, label: 'Staircase Cleaning', icon: '🪜', perFlat: false },
+];
+
+// Common area tasks (not tied to a specific block/floor)
+export const COMMON_TASKS: { id: string; type: TaskType; label: string; icon: string; area: string }[] = [
+  { id: 'glass-entrance', type: TaskType.GLASS_CLEANING, label: 'Entrance Glass Cleaning', icon: '🪟', area: 'Main Entrance' },
+  { id: 'driveway-broom', type: TaskType.DRIVEWAY, label: 'Driveway Cleaning', icon: '🚗', area: 'Society Driveway' },
+];
