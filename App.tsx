@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LayoutDashboard, Users, Package, BarChart3, Moon, Sun, ClipboardList, LogOut, Loader2, Clock } from 'lucide-react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useAuth } from './contexts/AuthContext';
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
@@ -233,6 +234,7 @@ const App: React.FC = () => {
           <NavItem icon={<BarChart3 size={22} />} label="Logs" active={staffTab === 'LOGS'} onClick={() => setStaffTab('LOGS')} />
         </div>
       )}
+      <SpeedInsights />
     </div>
   );
 };
