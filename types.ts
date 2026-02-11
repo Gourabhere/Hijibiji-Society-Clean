@@ -122,8 +122,12 @@ export const FLOOR_TASKS: { type: TaskType; label: string; icon: string; perFlat
   { type: TaskType.STAIRCASE, label: 'Staircase Cleaning', icon: '🪜', perFlat: false },
 ];
 
+// Block-level tasks (one per block, not per-floor)
+export const BLOCK_TASKS: { id: string; type: TaskType; label: string; icon: string }[] = [
+  { id: 'glass-entrance', type: TaskType.GLASS_CLEANING, label: 'Entrance Glass Cleaning', icon: '🪟' },
+];
+
 // Common area tasks (not tied to a specific block/floor)
 export const COMMON_TASKS: { id: string; type: TaskType; label: string; icon: string; area: string }[] = [
-  { id: 'glass-entrance', type: TaskType.GLASS_CLEANING, label: 'Entrance Glass Cleaning', icon: '🪟', area: 'Main Entrance' },
   { id: 'driveway-broom', type: TaskType.DRIVEWAY, label: 'Driveway Cleaning', icon: '🚗', area: 'Society Driveway' },
 ];

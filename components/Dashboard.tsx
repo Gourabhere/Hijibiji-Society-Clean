@@ -1,6 +1,5 @@
 import React from 'react';
 import { TaskLog, StaffMember, TaskDefinition, Frequency, SupplyRequest } from '../types';
-import { TASK_DEFINITIONS } from '../constants';
 import { Check, X, MapPin, TrendingUp } from 'lucide-react';
 
 interface DashboardProps {

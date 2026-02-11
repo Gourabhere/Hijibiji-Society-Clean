@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard';
 import StaffTaskView from './components/StaffTaskView';
 import SupplyRequestView from './components/SupplyRequest';
 import StaffAttendance from './components/StaffAttendance';
+import StaffLogsView from './components/StaffLogsView';
 import { TaskLog, SupplyRequest, PunchLog, StaffMember } from './types';
 import {
   fetchStaffMembers,
@@ -178,6 +179,8 @@ const App: React.FC = () => {
         return <StaffAttendance currentUser={currentUser} punchLogs={punchLogs} onPunch={handlePunch} staffMembers={staffMembers} />;
       case 'STOCK':
         return <SupplyRequestView currentUser={currentUser} requests={supplyRequests} onRequest={handleSupplyRequest} staffMembers={staffMembers} />;
+      case 'LOGS':
+        return <StaffLogsView currentUser={currentUser} logs={logs} staffMembers={staffMembers} />;
       case 'TASKS':
       default:
         return <StaffTaskView currentUser={currentUser} logs={logs} onLogTask={handleLogTask} staffMembers={staffMembers} />;

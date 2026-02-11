@@ -1,10 +1,12 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { TaskLog, StaffMember, TaskType, BUILDING_STRUCTURE, FLOORS, FLOOR_TASKS, COMMON_TASKS, BlockConfig } from '../types';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { TaskLog, StaffMember, TaskType, BUILDING_STRUCTURE, FLOORS, FLOOR_TASKS, COMMON_TASKS, BLOCK_TASKS, BlockConfig } from '../types';
 import { getTaskIcon } from '../constants';
 import { ArrowLeft, Check, Camera, Loader2, ChevronRight, Building2, Layers, X } from 'lucide-react';
 import { uploadImageToCloudinary } from '../services/cloudinaryService';
 import { stampDateTimeOnImage } from '../services/imageStamp';
+import { fetchFlatPaymentStatus } from '../services/collectionsClient';
 
+// HMR Trigger: Payment Logic Updated
 interface StaffTaskViewProps {
   currentUser: number;
   logs: TaskLog[];
@@ -20,11 +22,20 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
   const [selectedFloor, setSelectedFloor] = useState<number | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadingTaskKey, setUploadingTaskKey] = useState<string | null>(null);
-  const [pendingTask, setPendingTask] = useState<{ taskType: TaskType; flat?: string } | null>(null);
+  const [pendingTask, setPendingTask] = useState<{ taskId: string; taskType: TaskType; flat?: string; block?: number } | null>(null);
   const [cameraOpen, setCameraOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [paymentStatus, setPaymentStatus] = useState<Map<string, boolean>>(new Map());
+  const [loadingPayment, setLoadingPayment] = useState(true);
+
+  useEffect(() => {
+    fetchFlatPaymentStatus().then((map) => {
+      setPaymentStatus(map);
+      setLoadingPayment(false);
+    });
+  }, []);
 
   const currentStaff = staffMembers.find(s => s.id === currentUser);
   const today = new Date().setHours(0, 0, 0, 0);
@@ -59,6 +70,9 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
       total += nonFlatTasks.length;
       done += nonFlatTasks.filter(t => isTaskDone(block, floor, t.type)).length;
     });
+    // Block-level tasks
+    total += BLOCK_TASKS.length;
+    done += BLOCK_TASKS.filter(t => isBlockTaskDone(t.id, block)).length;
     return { done, total };
   };
 
@@ -83,6 +97,11 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
   // Is common task done?
   const isCommonTaskDone = (taskId: string): boolean => {
     return todaysLogs.some(l => l.taskId === taskId);
+  };
+
+  // Is block-level task done for a specific block?
+  const isBlockTaskDone = (taskId: string, block: number): boolean => {
+    return todaysLogs.some(l => l.taskId === taskId && l.block === block);
   };
 
   // Handle back navigation
@@ -127,9 +146,20 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
     });
   };
 
+  // Complete a block-level task
+  const handleCompleteBlockTask = (taskId: string, block: number) => {
+    onLogTask({
+      taskId,
+      staffId: currentUser,
+      timestamp: Date.now(),
+      status: 'COMPLETED',
+      block,
+    });
+  };
+
   // Open camera for a task
-  const handlePhotoUpload = async (taskType: TaskType, flat?: string) => {
-    setPendingTask({ taskType, flat });
+  const handlePhotoUpload = async (taskId: string, taskType: TaskType, flat?: string, block?: number) => {
+    setPendingTask({ taskId, taskType, flat, block });
     setCameraOpen(true);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -163,7 +193,7 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
 
   // Capture photo from live camera feed
   const handleCapturePhoto = async () => {
-    if (!videoRef.current || !canvasRef.current || !pendingTask || !selectedBlock || !selectedFloor) return;
+    if (!videoRef.current || !canvasRef.current || !pendingTask) return;
 
     const video = videoRef.current;
     const canvas = canvasRef.current;
@@ -183,10 +213,30 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
 
     let imageUrl = base64String;
     try {
-      // Stamp date-time on the image before upload
-      const stampedImage = await stampDateTimeOnImage(base64String);
+      // Stamp date-time and location on the image before upload
+      let locationText = '';
+      if (pendingTask.flat && selectedBlock) {
+        // Flat task: "Block 3 - Flat B (Floor 1)"
+        locationText = `Block ${selectedBlock.block} - Flat ${pendingTask.flat} (Floor ${selectedFloor})`;
+      } else if (selectedFloor && selectedBlock) {
+        // Floor area task: "Block 3 - Floor 1 Lobby"
+        locationText = `Block ${selectedBlock.block} - Floor ${selectedFloor}`;
+      } else if (pendingTask.block) {
+        // Block task: "Block 3 Entrance"
+        locationText = `Block ${pendingTask.block}`;
+      } else {
+        // Common task: "Clubhouse" -> "Clubhouse"
+        const commonTask = COMMON_TASKS.find(t => t.id === pendingTask.taskId);
+        locationText = commonTask ? commonTask.area : 'Common Area';
+      }
+
+      const stampedImage = await stampDateTimeOnImage(base64String, locationText);
       const staffName = currentStaff?.name.replace(/\s+/g, '_') || 'unknown';
-      const folder = `societyclean/B${selectedBlock.block}/F${selectedFloor}/${staffName}`;
+
+      const blockPart = selectedBlock ? `B${selectedBlock.block}` : 'Common';
+      const floorPart = selectedFloor ? `/F${selectedFloor}` : '';
+      const folder = `societyclean/${blockPart}${floorPart}/${staffName}`;
+
       const uploadResult = await uploadImageToCloudinary(stampedImage, folder);
       imageUrl = uploadResult.secure_url;
     } catch {
@@ -194,13 +244,13 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
     }
 
     onLogTask({
-      taskId: pendingTask.taskType,
+      taskId: pendingTask.taskId,
       staffId: currentUser,
       timestamp: Date.now(),
       status: 'COMPLETED',
       imageUrl,
-      block: selectedBlock.block,
-      floor: selectedFloor,
+      block: pendingTask.block || (selectedBlock ? selectedBlock.block : undefined),
+      floor: selectedFloor || undefined,
       flat: pendingTask.flat || undefined,
     });
 
@@ -303,23 +353,26 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
                   <div className="check-circle done"><Check size={14} /></div>
                 ) : (
                   <button
-                    onClick={() => handleCompleteCommonTask(task.id)}
+                    onClick={() => handlePhotoUpload(task.id, task.type)}
                     style={{
-                      background: 'var(--green)', color: 'white', border: 'none',
+                      background: 'var(--blue)', color: 'white', border: 'none',
                       borderRadius: 10, padding: '8px 14px', fontSize: 12, fontWeight: 700,
-                      cursor: 'pointer', fontFamily: 'inherit'
+                      cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6
                     }}
                   >
-                    Done
+                    <Camera size={14} /> Capture
                   </button>
-                )}
+                )
+                }
               </div>
             );
           })}
         </div>
-      </div>
+      </div >
     );
   };
+
+
 
   // ===== RENDER: FLOOR PICKER =====
   const renderFloorPicker = () => {
@@ -344,10 +397,49 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
         {/* Floor List */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {FLOORS.map((floor, i) => {
-            const { done, total } = getFloorCompletionCount(selectedBlock.block, floor);
-            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-            const allDone = done === total && total > 0;
             const flats = selectedBlock.flatsPerFloor(floor);
+
+            // Calculate Serviceable Flats
+            const serviceableFlats = flats.filter(flat => {
+              const key = `${selectedBlock.block}${flat}${floor}`;
+              return paymentStatus.has(key) && paymentStatus.get(key) === true;
+            });
+
+            // Calculate Progress for Serviceable items ONLY
+            let totalServiceable = 0;
+            let doneServiceable = 0;
+
+            if (serviceableFlats.length > 0) {
+              const perFlatTasks = FLOOR_TASKS.filter(t => t.perFlat);
+              totalServiceable += perFlatTasks.length * serviceableFlats.length;
+              doneServiceable += perFlatTasks.reduce((acc, t) =>
+                acc + serviceableFlats.filter(f => isTaskDone(selectedBlock.block, floor, t.type, f)).length, 0);
+
+              // Add non-flat tasks (Area tasks) if verified?
+              // Assuming Area tasks are always required if floor is active
+              const nonFlatTasks = FLOOR_TASKS.filter(t => !t.perFlat);
+              totalServiceable += nonFlatTasks.length;
+              doneServiceable += nonFlatTasks.filter(t => isTaskDone(selectedBlock.block, floor, t.type)).length;
+            }
+
+            // Determine Status
+            // RED: No serviceable flats (and not loading)
+            const isRed = !loadingPayment && serviceableFlats.length === 0;
+
+            // GREEN: All serviceable tasks done (and > 0 serviceable)
+            const isGreen = !loadingPayment && serviceableFlats.length > 0 && doneServiceable === totalServiceable;
+
+            // Default: In progress or partial
+            // Calculate percentage based on serviceable (or 0 if red)
+            const pct = totalServiceable > 0 ? Math.round((doneServiceable / totalServiceable) * 100) : 0;
+
+            // Style overrides
+            const cardStyle = isRed ? {
+              background: 'rgba(239, 68, 68, 0.1)',
+              border: '1px solid var(--red)'
+            } : isGreen ? {
+              // Default green-light style
+            } : {};
 
             return (
               <button
@@ -360,32 +452,36 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
                   border: 'none', fontFamily: 'inherit',
                   transition: 'all 0.2s ease',
                   animationDelay: `${i * 40}ms`,
-                  opacity: allDone ? 0.7 : 1,
+                  opacity: isGreen ? 0.7 : 1,
+                  ...cardStyle
                 }}
               >
                 <div style={{
                   width: 42, height: 42, borderRadius: 12, flexShrink: 0,
-                  background: allDone ? 'var(--green-light)' : 'var(--bg-inset)',
+                  background: isGreen ? 'var(--green-light)' : isRed ? 'var(--red)' : 'var(--bg-inset)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: allDone ? 'var(--green)' : 'var(--text-muted)', fontWeight: 800, fontSize: 16
+                  color: isGreen ? 'var(--green)' : isRed ? 'white' : 'var(--text-muted)',
+                  fontWeight: 800, fontSize: 16
                 }}>
-                  {floor}
+                  {isRed ? <X size={20} /> : floor}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>
                     Floor {floor}
                   </div>
-                  <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-muted)' }}>
-                    {flats.length} flats · {done}/{total} tasks done
+                  <div style={{ fontSize: 12, fontWeight: 500, color: isRed ? 'var(--red)' : 'var(--text-muted)' }}>
+                    {isRed ? 'No serviceable flats' : `${serviceableFlats.length} flats · ${doneServiceable}/${totalServiceable} tasks`}
                   </div>
                 </div>
                 {/* Progress */}
                 <div style={{ width: 44, textAlign: 'right' }}>
-                  {allDone ? (
+                  {isGreen ? (
                     <div className="check-circle done"><Check size={14} /></div>
+                  ) : isRed ? (
+                    <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--red)' }}>LOCKED</span>
                   ) : (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: 'var(--text-muted)' }}>
-                      <span style={{ fontSize: 12, fontWeight: 700 }}>{pct}%</span>
+                      <span style={{ fontSize: 12, fontWeight: 700 }}>{loadingPayment ? '...' : `${pct}%`}</span>
                       <ChevronRight size={16} />
                     </div>
                   )}
@@ -394,7 +490,44 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
             );
           })}
         </div>
-      </div>
+
+        {/* Block-Level Tasks */}
+        <div className="section-header animate-in animate-in-delay-1" style={{ marginTop: 20 }}>
+          <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--text-primary)' }}>Block Tasks</span>
+          <span className="section-label">DAILY</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }} className="animate-in animate-in-delay-2">
+          {BLOCK_TASKS.map(task => {
+            const done = isBlockTaskDone(task.id, selectedBlock.block);
+            return (
+              <div key={task.id} className="neu-card" style={{
+                display: 'flex', alignItems: 'center', gap: 14, padding: '14px 18px'
+              }}>
+                <span style={{ fontSize: 22 }}>{task.icon}</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>{task.label}</div>
+                  <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--text-muted)' }}>{selectedBlock.label} Entrance</div>
+                </div>
+                {done ? (
+                  <div className="check-circle done"><Check size={14} /></div>
+                ) : (
+                  <button
+                    onClick={() => handlePhotoUpload(task.id, task.type, undefined, selectedBlock.block)}
+                    style={{
+                      background: 'var(--blue)', color: 'white', border: 'none',
+                      borderRadius: 10, padding: '8px 14px', fontSize: 12, fontWeight: 700,
+                      cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6
+                    }}
+                  >
+                    <Camera size={14} /> Capture
+                  </button>
+                )
+                }
+              </div>
+            );
+          })}
+        </div>
+      </div >
     );
   };
 
@@ -432,6 +565,13 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
             <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(flats.length, 4)}, 1fr)`, gap: 10 }}>
               {flats.map(flat => {
                 const done = isTaskDone(selectedBlock.block, selectedFloor, taskDef.type, flat);
+                const flatCode = `${selectedBlock.block}${flat}${selectedFloor}`;
+
+                const isKnown = paymentStatus.has(flatCode);
+                const isPaid = isKnown ? paymentStatus.get(flatCode) : false;
+                const isUnpaid = isKnown && !isPaid;
+                const isDisabled = !isKnown;
+
                 const thisKey = `${taskDef.type}-${flat}`;
                 const isThisUploading = uploadingTaskKey === thisKey;
 
@@ -439,32 +579,38 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
                   <button
                     key={flat}
                     onClick={() => {
-                      if (!done && !isThisUploading) {
-                        handlePhotoUpload(taskDef.type, flat);
+                      if (!done && !isThisUploading && !isUnpaid && !isDisabled) {
+                        handlePhotoUpload(taskDef.type, taskDef.type, flat, selectedBlock.block);
                       }
                     }}
-                    disabled={done || isThisUploading}
+                    disabled={done || isThisUploading || isUnpaid || isDisabled}
                     className={done ? 'neu-card' : 'neu-card-inset'}
                     style={{
-                      padding: '14px 8px', border: 'none', fontFamily: 'inherit',
-                      cursor: done ? 'default' : 'pointer',
+                      padding: '14px 8px',
+                      border: isUnpaid ? '1px solid var(--red)' : isDisabled ? '1px dashed var(--text-muted)' : 'none',
+                      fontFamily: 'inherit',
+                      cursor: (done || isUnpaid || isDisabled) ? 'default' : 'pointer',
                       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
-                      opacity: done ? 0.7 : 1, transition: 'all 0.2s',
-                      background: done ? 'var(--green-light)' : undefined,
+                      opacity: (done || isUnpaid || isDisabled) ? 0.7 : 1, transition: 'all 0.2s',
+                      background: done ? 'var(--green-light)' : isUnpaid ? 'rgba(239, 68, 68, 0.1)' : isDisabled ? 'rgba(0,0,0,0.05)' : undefined,
                     }}
                   >
                     {isThisUploading ? (
                       <Loader2 size={20} className="spin" style={{ color: 'var(--blue)' }} />
                     ) : done ? (
                       <Check size={20} style={{ color: 'var(--green)' }} />
+                    ) : isUnpaid ? (
+                      <X size={20} style={{ color: 'var(--red)' }} />
+                    ) : isDisabled ? (
+                      <div style={{ width: 18, height: 18 }} />
                     ) : (
                       <Camera size={18} style={{ color: 'var(--text-muted)' }} />
                     )}
-                    <span style={{ fontSize: 13, fontWeight: 700, color: done ? 'var(--green)' : 'var(--text-primary)' }}>
+                    <span style={{ fontSize: 13, fontWeight: 700, color: done ? 'var(--green)' : isUnpaid ? 'var(--red)' : isDisabled ? 'var(--text-muted)' : 'var(--text-primary)' }}>
                       {flat}
                     </span>
-                    <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--text-muted)' }}>
-                      {done ? 'Done' : 'Tap'}
+                    <span style={{ fontSize: 10, fontWeight: 600, color: isUnpaid ? 'var(--red)' : 'var(--text-muted)' }}>
+                      {done ? 'Done' : isUnpaid ? 'Unpaid' : isDisabled ? 'N/A' : 'Tap'}
                     </span>
                   </button>
                 );
@@ -501,28 +647,17 @@ const StaffTaskView: React.FC<StaffTaskViewProps> = ({ currentUser, logs, onLogT
                   ) : isThisUploading ? (
                     <Loader2 size={20} className="spin" style={{ color: 'var(--blue)' }} />
                   ) : (
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <button
-                        onClick={() => handlePhotoUpload(taskDef.type)}
-                        style={{
-                          background: 'var(--blue-light)', color: 'var(--blue)', border: 'none',
-                          borderRadius: 10, padding: '8px 10px', cursor: 'pointer', fontFamily: 'inherit',
-                          display: 'flex', alignItems: 'center', gap: 4
-                        }}
-                      >
-                        <Camera size={14} />
-                      </button>
-                      <button
-                        onClick={() => handleCompleteTask(taskDef.type)}
-                        style={{
-                          background: 'var(--green)', color: 'white', border: 'none',
-                          borderRadius: 10, padding: '8px 14px', fontSize: 12, fontWeight: 700,
-                          cursor: 'pointer', fontFamily: 'inherit'
-                        }}
-                      >
-                        Done
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => handlePhotoUpload(taskDef.type, taskDef.type, undefined, selectedBlock.block)}
+                      className="btn-primary"
+                      style={{
+                        background: 'var(--blue)', color: 'white', border: 'none',
+                        borderRadius: 10, padding: '8px 16px', fontSize: 13, fontWeight: 700,
+                        cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 8
+                      }}
+                    >
+                      <Camera size={16} /> Capture Proof
+                    </button>
                   )}
                 </div>
               );

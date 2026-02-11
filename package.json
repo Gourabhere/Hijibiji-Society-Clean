@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@capacitor/android": "^8.0.2",
+    "@capacitor/core": "^8.0.2",
     "@supabase/supabase-js": "^2.95.3",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
@@ -22,6 +24,7 @@
     "recharts": "^3.7.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.0.2",
     "@types/node": "^22.19.11",
     "typescript": "~5.8.2"
   }
