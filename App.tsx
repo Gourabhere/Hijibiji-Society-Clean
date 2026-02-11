@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import { LayoutDashboard, Users, Package, BarChart3, Moon, Sun, ClipboardList, LogOut, Loader2, Clock } from 'lucide-react';
 import { SpeedInsights } from "@vercel/speed-insights/react";
