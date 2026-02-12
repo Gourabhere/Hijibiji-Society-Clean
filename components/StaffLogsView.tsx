@@ -25,7 +25,7 @@ const StaffLogsView: React.FC<StaffLogsViewProps> = ({ currentUser, logs, staffM
         const weekCount = myLogs.filter(l => l.timestamp >= weekAgo).length;
 
         // Breakdown
-        const garbage = myLogs.filter(l => l.taskId.includes('garbage') || l.taskId.includes('trash')).length;
+        const garbage = myLogs.filter(l => l.taskId.includes('Routine') || l.taskId.includes('Garbage')).length;
         const brooming = myLogs.filter(l => l.taskId.includes('broom') || l.taskId.includes('sweep')).length;
         const mopping = myLogs.filter(l => l.taskId.includes('mop')).length;
         const other = myLogs.length - garbage - brooming - mopping;
@@ -57,7 +57,7 @@ const StaffLogsView: React.FC<StaffLogsViewProps> = ({ currentUser, logs, staffM
     };
 
     const getTaskType = (taskId: string): TaskType => {
-        if (taskId.includes('garbage')) return TaskType.GARBAGE_COLLECTION;
+        if (taskId.includes('Routine') || taskId.includes('Garbage')) return TaskType.ROUTINE_HOUSEKEEPING;
         if (taskId.includes('broom')) return TaskType.BROOMING;
         if (taskId.includes('mop')) return TaskType.MOPPING;
         if (taskId.includes('glass')) return TaskType.GLASS_CLEANING;
@@ -117,57 +117,24 @@ const StaffLogsView: React.FC<StaffLogsViewProps> = ({ currentUser, logs, staffM
 
             {/* History List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                {Object.entries(groupedLogs).map(([date, dayLogs]) => (
-                    <div key={date} className="animate-in">
-                        <div style={{
-                            fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase',
-                            marginBottom: 12, letterSpacing: 0.5, paddingLeft: 4
-                        }}>
-                            {date === new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) ? 'Today' : date}
-                        </div>
-
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                            {dayLogs.map(log => (
-                                <div key={log.id} className="neu-card" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', borderRadius: 16 }}>
-                                    <div style={{ fontSize: 22 }}>
-                                        {getTaskIcon(getTaskType(log.taskId))}
-                                    </div>
-                                    <div style={{ flex: 1 }}>
-                                        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-primary)' }}>
-                                            {getTaskLabel(log.taskId)}
-                                        </div>
-                                        <div style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-muted)', display: 'flex', gap: 6 }}>
-                                            <span>
-                                                {new Date(log.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true })}
-                                            </span>
-                                            <span>·</span>
-                                            <span>
-                                                Block {log.block ? String.fromCharCode(64 + log.block) : '-'}
-                                                {log.floor !== undefined ? `, Floor ${log.floor}` : ''}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div style={{
-                                        width: 24, height: 24, borderRadius: '50%', background: 'var(--green-light)',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--green)'
-                                    }}>
-                                        <Award size={14} />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                ))}
-
-                {myLogs.length === 0 && (
-                    <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-muted)' }}>
-                        <div style={{ fontSize: 40, marginBottom: 10 }}>📜</div>
-                        <div style={{ fontWeight: 600 }}>No logs found</div>
-                        <div style={{ fontSize: 12 }}>Get started by completing tasks!</div>
-                    </div>
-                )}
             </div>
+
+
+            {/* Simplified Calendar View Placeholder (since actual calendar component is complex, simplified to date picker style for now or just list) 
+                    Reverting to list as per user request for "Calendar Format" which implies a visual calendar is desired.
+                    Implementing a simple month view.
+                */}
+            <CalendarView logs={myLogs} />
+
+            {myLogs.length === 0 && (
+                <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-muted)' }}>
+                    <div style={{ fontSize: 40, marginBottom: 10 }}>📜</div>
+                    <div style={{ fontWeight: 600 }}>No logs found</div>
+                    <div style={{ fontSize: 12 }}>Get started by completing tasks!</div>
+                </div>
+            )}
         </div>
+
     );
 };
 
@@ -184,5 +151,86 @@ const StatItem: React.FC<{ icon: React.ReactNode; count: number; label: string; 
         <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--text-muted)' }}>{label}</div>
     </div>
 );
+
+const CalendarView: React.FC<{ logs: TaskLog[] }> = ({ logs }) => {
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+    const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate();
+    const firstDay = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1).getDay();
+
+    const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+    const blanks = Array.from({ length: firstDay }, (_, i) => i);
+
+    const selectedDetails = logs.filter(l => {
+        const d = new Date(l.timestamp);
+        return d.getDate() === selectedDate.getDate() &&
+            d.getMonth() === selectedDate.getMonth() &&
+            d.getFullYear() === selectedDate.getFullYear();
+    });
+
+    return (
+        <div className="animate-in">
+            <div className="neu-card" style={{ padding: 20, marginBottom: 20 }}>
+                {/* Month Header */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                    <button onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1))} style={{ border: 'none', background: 'none', fontSize: 18, cursor: 'pointer' }}>←</button>
+                    <span style={{ fontSize: 16, fontWeight: 700 }}>{selectedDate.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}</span>
+                    <button onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1))} style={{ border: 'none', background: 'none', fontSize: 18, cursor: 'pointer' }}>→</button>
+                </div>
+
+                {/* Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 8, textAlign: 'center' }}>
+                    {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(d => <div key={d} style={{ fontSize: 10, fontWeight: 700, color: 'var(--text-muted)' }}>{d}</div>)}
+                    {blanks.map(b => <div key={`blank-${b}`} />)}
+                    {days.map(d => {
+                        const dateStr = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), d).setHours(0, 0, 0, 0);
+                        const hasLogs = logs.some(l => new Date(l.timestamp).setHours(0, 0, 0, 0) === dateStr);
+                        const isSelected = d === selectedDate.getDate();
+
+                        return (
+                            <button
+                                key={d}
+                                onClick={() => setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth(), d))}
+                                style={{
+                                    width: 32, height: 32, borderRadius: '50%', border: 'none', cursor: 'pointer',
+                                    background: isSelected ? 'var(--blue)' : hasLogs ? 'var(--green-light)' : 'transparent',
+                                    color: isSelected ? 'white' : hasLogs ? 'var(--green)' : 'var(--text-primary)',
+                                    fontWeight: isSelected || hasLogs ? 700 : 400,
+                                    margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                }}
+                            >
+                                {d}
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+
+            {/* Selected Day Logs */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {selectedDetails.length === 0 ? (
+                    <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: 20, fontSize: 13 }}>No activity on this date</div>
+                ) : (
+                    selectedDetails.map(log => (
+                        <div key={log.id} className="neu-card" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px' }}>
+                            <div style={{
+                                width: 36, height: 36, borderRadius: 12, background: 'var(--bg-inset)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18
+                            }}>
+                                {getTaskIcon(log.taskId.includes('Routine') ? TaskType.ROUTINE_HOUSEKEEPING : TaskType.GLASS_CLEANING)}
+                            </div>
+                            <div>
+                                <div style={{ fontSize: 14, fontWeight: 700 }}>{log.taskId}</div>
+                                <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                                    {new Date(log.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
+    );
+};
 
 export default StaffLogsView;

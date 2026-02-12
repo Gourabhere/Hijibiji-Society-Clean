@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@capacitor/android": "^8.0.2",
+    "@capacitor/app": "^8.0.0",
     "@capacitor/core": "^8.0.2",
     "@supabase/supabase-js": "^2.95.3",
     "@types/react": "^19.2.13",

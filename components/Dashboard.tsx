@@ -1,6 +1,7 @@
 import React from 'react';
-import { TaskLog, StaffMember, TaskDefinition, Frequency, SupplyRequest } from '../types';
-import { Check, X, MapPin, TrendingUp } from 'lucide-react';
+import { TaskLog, StaffMember, TaskDefinition, Frequency, SupplyRequest, PunchLog, BUILDING_STRUCTURE, FLOORS, FLOOR_TASKS, BLOCK_TASKS, COMMON_TASKS } from '../types';
+import { Check, X, MapPin, TrendingUp, Download, Plus, UserPlus } from 'lucide-react';
+import { insertStaffMember, verifyStaffPin } from '../services/supabaseDB';
 
 interface DashboardProps {
   logs: TaskLog[];
@@ -8,6 +9,9 @@ interface DashboardProps {
   supplyRequests: SupplyRequest[];
   onApproveSupply: (id: string) => void;
   staffMembers: StaffMember[];
+  punchLogs: PunchLog[];
+  onNavigate: (tab: string) => void;
+  onExport: () => void;
 }
 
 const DonutChart: React.FC<{ percentage: number; size?: number; strokeWidth?: number }> = ({
@@ -45,21 +49,46 @@ const DonutChart: React.FC<{ percentage: number; size?: number; strokeWidth?: nu
   );
 };
 
-const Dashboard: React.FC<DashboardProps> = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers }) => {
+const Dashboard: React.FC<DashboardProps> = ({
+  logs, tasks, supplyRequests, onApproveSupply, staffMembers, punchLogs, onNavigate, onExport
+}) => {
+  const [showAddStaffModal, setShowAddStaffModal] = React.useState(false);
+  const [pin, setPin] = React.useState('');
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [newStaff, setNewStaff] = React.useState({ name: '', role: 'Housekeeper', blockAssignment: '', avatar: '' });
+  const [addingStaff, setAddingStaff] = React.useState(false);
   const today = new Date().setHours(0, 0, 0, 0);
   const todaysLogs = logs.filter(l => l.timestamp >= today);
 
-  const dailyTasksCount = tasks.filter(t => t.frequency === Frequency.DAILY).length;
-  const completedDaily = todaysLogs.filter(l => {
-    const taskDef = tasks.find(t => t.id === l.taskId);
-    return taskDef?.frequency === Frequency.DAILY && l.status !== 'REJECTED';
-  }).length;
+  const totalDailyTasks = React.useMemo(() => {
+    let total = 0;
+    // 1. Common Area Tasks
+    total += COMMON_TASKS.length;
 
-  const progress = dailyTasksCount > 0 ? Math.round((completedDaily / dailyTasksCount) * 100) : 74;
+    BUILDING_STRUCTURE.forEach(block => {
+      // 2. Block Level Tasks
+      total += BLOCK_TASKS.length;
 
-  const garbageTasks = tasks.filter(t => t.type.includes('Garbage'));
+      FLOORS.forEach(floor => {
+        const flats = block.flatsPerFloor(floor);
+        // 3. Per-Flat Tasks
+        total += FLOOR_TASKS.filter(t => t.perFlat).length * flats.length;
+        // 4. Per-Floor Tasks
+        total += FLOOR_TASKS.filter(t => !t.perFlat).length;
+      });
+    });
+    return total;
+  }, []);
+
+  const completedDaily = todaysLogs.filter(l => l.status === 'COMPLETED').length;
+  const progress = totalDailyTasks > 0 ? Math.round((completedDaily / totalDailyTasks) * 100) : 0;
+
+  const garbageTasks = tasks.filter(t => t.type.includes('Routine') || t.type.includes('Garbage'));
   const garbageDone = todaysLogs.filter(l => garbageTasks.some(t => t.id === l.taskId)).length;
-  const garbagePercent = garbageTasks.length > 0 ? Math.round((garbageDone / garbageTasks.length) * 100) : 82;
+  // Fallback to "Routine Housekeeping" string matching if tasks array is empty/static
+  const garbageLogsCount = todaysLogs.filter(l => l.taskId.includes('Routine') || l.taskId.includes('Garbage')).length;
+  // Heuristic for progress
+  const garbagePercent = Math.min(100, Math.round((garbageLogsCount / 10) * 100)) || 82;
 
   const broomTasks = tasks.filter(t => t.type.includes('Brooming'));
   const broomDone = todaysLogs.filter(l => broomTasks.some(t => t.id === l.taskId)).length;
@@ -67,8 +96,95 @@ const Dashboard: React.FC<DashboardProps> = ({ logs, tasks, supplyRequests, onAp
 
   const openRequests = supplyRequests.filter(r => r.status === 'OPEN');
 
+  const handleAddStaff = async () => {
+    if (!newStaff.name || !newStaff.blockAssignment) {
+      alert("Name and Block Assignment are required");
+      return;
+    }
+    setAddingStaff(true);
+    try {
+      await insertStaffMember({
+        name: newStaff.name,
+        role: 'Housekeeper',
+        avatar: newStaff.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(newStaff.name)}&background=random`,
+        blockAssignment: newStaff.blockAssignment
+      });
+      setShowAddStaffModal(false);
+      setPin('');
+      setIsAuthenticated(false);
+      setNewStaff({ name: '', role: 'Housekeeper', blockAssignment: '', avatar: '' });
+      // Trigger a refresh ideally, but for now relies on parent update or HMR
+      alert("Staff added successfully!");
+    } catch (e: any) {
+      alert("Failed to add staff: " + e.message);
+    } finally {
+      setAddingStaff(false);
+    }
+  };
+
+  const handlePinSubmit = () => {
+    if (pin === '1234') { // Hardcoded credential check as requested
+      setIsAuthenticated(true);
+    } else {
+      alert("Invalid Credential");
+    }
+  };
+
   return (
     <div style={{ paddingBottom: 16 }}>
+
+      {/* Add Staff Modal */}
+      {showAddStaffModal && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(0,0,0,0.5)', zIndex: 1000,
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <div className="neu-card" style={{ width: 320, padding: 24, background: 'var(--bg-card)' }}>
+            {!isAuthenticated ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                <h3 style={{ margin: 0, textAlign: 'center' }}>Admin Access</h3>
+                <input
+                  type="password"
+                  placeholder="Enter Credential PIN"
+                  value={pin}
+                  onChange={e => setPin(e.target.value)}
+                  style={{
+                    padding: 12, borderRadius: 8, border: '1px solid var(--text-muted)',
+                    background: 'var(--bg-inset)', color: 'var(--text-primary)', outline: 'none'
+                  }}
+                />
+                <div style={{ display: 'flex', gap: 10 }}>
+                  <button onClick={() => setShowAddStaffModal(false)} className="btn-ghost" style={{ flex: 1 }}>Cancel</button>
+                  <button onClick={handlePinSubmit} className="neu-button" style={{ flex: 1, color: 'white', background: 'var(--blue)' }}>Verify</button>
+                </div>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <h3 style={{ margin: 0 }}>Add New Staff</h3>
+                <input
+                  placeholder="Staff Name"
+                  value={newStaff.name}
+                  onChange={e => setNewStaff({ ...newStaff, name: e.target.value })}
+                  style={{ padding: 12, borderRadius: 8, border: 'none', background: 'var(--bg-inset)', color: 'var(--text-primary)' }}
+                />
+                <input
+                  placeholder="Block Assignment (e.g., Block 1)"
+                  value={newStaff.blockAssignment}
+                  onChange={e => setNewStaff({ ...newStaff, blockAssignment: e.target.value })}
+                  style={{ padding: 12, borderRadius: 8, border: 'none', background: 'var(--bg-inset)', color: 'var(--text-primary)' }}
+                />
+                <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
+                  <button onClick={() => setShowAddStaffModal(false)} className="btn-ghost" style={{ flex: 1 }}>Cancel</button>
+                  <button onClick={handleAddStaff} className="neu-button" disabled={addingStaff} style={{ flex: 1, color: 'white', background: 'var(--green)' }}>
+                    {addingStaff ? 'Saving...' : 'Save'}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* On-Duty Staff */}
       <div className="animate-in" style={{ marginBottom: 24 }}>
@@ -77,15 +193,60 @@ const Dashboard: React.FC<DashboardProps> = ({ logs, tasks, supplyRequests, onAp
           <button className="btn-ghost" style={{ fontSize: 13, fontWeight: 600, color: 'var(--blue)', padding: '4px 8px' }}>View All</button>
         </div>
         <div style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 4 }} className="no-scrollbar">
-          {staffMembers.map(staff => (
-            <div key={staff.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, minWidth: 72 }}>
-              <img src={staff.avatar} alt={staff.name} className="avatar avatar-lg" style={{ width: 56, height: 56 }} />
-              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', textAlign: 'center', lineHeight: 1.2 }}>
-                {staff.name.split(' ')[0]} {staff.name.split(' ')[1]?.[0]}.
-              </span>
-              <span style={{ fontSize: 10, fontWeight: 500, color: 'var(--text-muted)' }}>{staff.blockAssignment}</span>
-            </div>
-          ))}
+          <div style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 4 }} className="no-scrollbar">
+            {staffMembers.filter(s => {
+              // Check if staff is punched in today
+              const staffPunches = punchLogs
+                .filter(p => p.staffId === s.id && p.timestamp >= today)
+                .sort((a, b) => b.timestamp - a.timestamp);
+              return staffPunches.length > 0 && staffPunches[0].type === 'IN';
+            }).length === 0 ? (
+              <div style={{ padding: '0 8px', fontSize: 13, color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                No staff currently on duty.
+              </div>
+            ) : (
+              <>
+                {staffMembers.map(s => {
+                  const staffPunches = punchLogs
+                    .filter(p => p.staffId === s.id && p.timestamp >= today)
+                    .sort((a, b) => b.timestamp - a.timestamp);
+                  const isOnDuty = staffPunches.length > 0 && staffPunches[0].type === 'IN';
+                  if (!isOnDuty) return null;
+
+                  const staffTaskCount = todaysLogs.filter(l => l.staffId === s.id && l.status === 'COMPLETED').length;
+
+                  return (
+                    <div key={s.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, minWidth: 72 }}>
+                      <img src={s.avatar} alt={s.name} className="avatar avatar-lg" style={{ width: 56, height: 56 }} />
+                      <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-primary)', textAlign: 'center', lineHeight: 1.2 }}>
+                        {s.name.split(' ')[0]} {s.name.split(' ')[1]?.[0]}.
+                      </span>
+                      <span style={{ fontSize: 10, fontWeight: 500, color: 'var(--green)' }}>{staffTaskCount} tasks today</span>
+                    </div>
+                  );
+                })}
+
+                {/* Add Staff Tile */}
+                <button
+                  onClick={() => setShowAddStaffModal(true)}
+                  style={{
+                    minWidth: 72, height: 90, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6,
+                    background: 'transparent', border: 'none', cursor: 'pointer'
+                  }}
+                >
+                  <div style={{
+                    width: 56, height: 56, borderRadius: '50%', background: 'var(--bg-inset)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)',
+                    border: '1px dashed var(--text-muted)'
+                  }}>
+                    <Plus size={24} />
+                  </div>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-muted)' }}>Add New</span>
+                </button>
+              </>
+            )}
+
+          </div>
         </div>
       </div>
 
@@ -158,10 +319,10 @@ const Dashboard: React.FC<DashboardProps> = ({ logs, tasks, supplyRequests, onAp
             display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: 16,
             position: 'relative'
           }}>
-            <div style={{ position: 'absolute', top: 40, left: '30%', width: 12, height: 12, borderRadius: '50%', background: 'var(--blue)', boxShadow: '0 0 0 4px rgba(59,130,246,0.2)' }} />
-            <div style={{ position: 'absolute', top: 70, left: '50%', width: 12, height: 12, borderRadius: '50%', background: 'var(--coral)', boxShadow: '0 0 0 4px rgba(249,112,102,0.2)' }} />
-            <div style={{ position: 'absolute', top: 55, left: '65%', width: 12, height: 12, borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 0 4px rgba(16,185,129,0.2)' }} />
-            <div style={{ position: 'absolute', top: 90, left: '40%', width: 12, height: 12, borderRadius: '50%', background: 'var(--yellow)', boxShadow: '0 0 0 4px rgba(245,158,11,0.2)' }} />
+            <div style={{ position: 'absolute', top: 40, left: '30%', width: 12, height: 12, borderRadius: '50%', background: todaysLogs.some(l => l.block === 1) ? 'var(--green)' : 'var(--red)', boxShadow: '0 0 0 4px rgba(255,255,255,0.2)' }} />
+            <div style={{ position: 'absolute', top: 70, left: '50%', width: 12, height: 12, borderRadius: '50%', background: todaysLogs.some(l => l.block === 2) ? 'var(--green)' : 'var(--red)', boxShadow: '0 0 0 4px rgba(255,255,255,0.2)' }} />
+            <div style={{ position: 'absolute', top: 55, left: '65%', width: 12, height: 12, borderRadius: '50%', background: todaysLogs.some(l => l.block === 3) ? 'var(--green)' : 'var(--red)', boxShadow: '0 0 0 4px rgba(255,255,255,0.2)' }} />
+            <div style={{ position: 'absolute', top: 90, left: '40%', width: 12, height: 12, borderRadius: '50%', background: todaysLogs.some(l => l.block === 4) ? 'var(--green)' : 'var(--red)', boxShadow: '0 0 0 4px rgba(255,255,255,0.2)' }} />
             <div style={{
               background: 'rgba(255,255,255,0.85)', borderRadius: 10, padding: '8px 14px',
               fontSize: 11, fontWeight: 700, color: 'var(--text-secondary)',
@@ -186,16 +347,20 @@ const Dashboard: React.FC<DashboardProps> = ({ logs, tasks, supplyRequests, onAp
           <span className="section-title">Management Hub</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <HubCard icon="👤" title="Manage Staff" desc="Add, edit profiles & schedules" color="var(--purple)" bgColor="var(--purple-light)" />
-          <HubCard icon="📦" title="Inventory Management" desc="Restock alerts & tracking" color="var(--coral)" bgColor="var(--coral-light)" />
-          <HubCard icon="📋" title="System Logs" desc="View all system activities" color="var(--green)" bgColor="var(--green-light)" />
+          <HubCard icon="👤" title="Manage Staff" desc="Add, edit profiles & schedules" color="var(--purple)" bgColor="var(--purple-light)" onClick={() => onNavigate('STAFF')} />
+          <HubCard icon="📦" title="Inventory Management" desc="Restock alerts & tracking" color="var(--coral)" bgColor="var(--coral-light)" onClick={() => onNavigate('STOCK')} />
+          <HubCard icon="📋" title="System Logs" desc="View all system activities" color="var(--green)" bgColor="var(--green-light)" onClick={() => onNavigate('LOGS')} />
 
-          <button className="neu-card" style={{
-            textAlign: 'center', padding: '18px 16px', cursor: 'pointer', width: '100%',
-            fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'inherit',
-            borderRadius: 'var(--radius)', border: 'none'
-          }}>
-            Export Monthly Report
+          <button
+            className="neu-card"
+            onClick={onExport}
+            style={{
+              textAlign: 'center', padding: '18px 16px', cursor: 'pointer', width: '100%',
+              fontSize: 15, fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'inherit',
+              borderRadius: 'var(--radius)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10
+            }}
+          >
+            <Download size={18} /> Export Monthly Report
           </button>
         </div>
       </div>
@@ -203,8 +368,8 @@ const Dashboard: React.FC<DashboardProps> = ({ logs, tasks, supplyRequests, onAp
   );
 };
 
-const HubCard: React.FC<{ icon: string; title: string; desc: string; color: string; bgColor: string }> = ({ icon, title, desc, bgColor }) => (
-  <div className="neu-card" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '18px 18px', cursor: 'pointer' }}>
+const HubCard: React.FC<{ icon: string; title: string; desc: string; color: string; bgColor: string; onClick: () => void }> = ({ icon, title, desc, bgColor, onClick }) => (
+  <div className="neu-card" onClick={onClick} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '18px 18px', cursor: 'pointer' }}>
     <div style={{
       width: 46, height: 46, borderRadius: 14, background: bgColor,
       display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0

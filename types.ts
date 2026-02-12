@@ -4,7 +4,7 @@ export enum UserRole {
 }
 
 export enum TaskType {
-  GARBAGE_COLLECTION = 'Garbage Collection',
+  ROUTINE_HOUSEKEEPING = 'Routine Housekeeping',
   BROOMING = 'Brooming',
   MOPPING = 'Mopping',
   DRIVEWAY = 'Driveway Cleaning',
@@ -116,7 +116,7 @@ export const BUILDING_STRUCTURE: BlockConfig[] = [
 
 // Floor-level task types that staff can perform
 export const FLOOR_TASKS: { type: TaskType; label: string; icon: string; perFlat: boolean }[] = [
-  { type: TaskType.GARBAGE_COLLECTION, label: 'Garbage Collection', icon: '🗑️', perFlat: true },
+  { type: TaskType.ROUTINE_HOUSEKEEPING, label: 'Routine Housekeeping', icon: '🗑️', perFlat: true },
   { type: TaskType.BROOMING, label: 'Lobby Brooming', icon: '🧹', perFlat: false },
   { type: TaskType.MOPPING, label: 'Floor Mopping', icon: '🧼', perFlat: false },
   { type: TaskType.STAIRCASE, label: 'Staircase Cleaning', icon: '🪜', perFlat: false },

@@ -1151,7 +1151,7 @@ var UserRole = /*#__PURE__*/ function(UserRole) {
     return UserRole;
 }({});
 var TaskType = /*#__PURE__*/ function(TaskType) {
-    TaskType["GARBAGE_COLLECTION"] = "Garbage Collection";
+    TaskType["ROUTINE_HOUSEKEEPING"] = "Routine Housekeeping";
     TaskType["BROOMING"] = "Brooming";
     TaskType["MOPPING"] = "Mopping";
     TaskType["DRIVEWAY"] = "Driveway Cleaning";
@@ -1260,8 +1260,8 @@ const BUILDING_STRUCTURE = [
 ];
 const FLOOR_TASKS = [
     {
-        type: "Garbage Collection",
-        label: 'Garbage Collection',
+        type: "Routine Housekeeping",
+        label: 'Routine Housekeeping',
         icon: '🗑️',
         perFlat: true
     },
@@ -1313,11 +1313,18 @@ __turbopack_context__.s([
     ()=>__TURBOPACK__default__export__
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/types.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.js [app-client] (ecmascript) <export default as Check>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$map$2d$pin$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MapPin$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/map-pin.js [app-client] (ecmascript) <export default as MapPin>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-up.js [app-client] (ecmascript) <export default as TrendingUp>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/download.js [app-client] (ecmascript) <export default as Download>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-client] (ecmascript) <export default as Plus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$supabaseDB$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/services/supabaseDB.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+;
 ;
 ;
 ;
@@ -1348,7 +1355,7 @@ const DonutChart = ({ percentage, size = 160, strokeWidth = 14 })=>{
                         strokeWidth: strokeWidth
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 23,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1366,7 +1373,7 @@ const DonutChart = ({ percentage, size = 160, strokeWidth = 14 })=>{
                         }
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 24,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
@@ -1382,7 +1389,7 @@ const DonutChart = ({ percentage, size = 160, strokeWidth = 14 })=>{
                                     stopColor: "#3b82f6"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 33,
+                                    lineNumber: 37,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
@@ -1390,24 +1397,24 @@ const DonutChart = ({ percentage, size = 160, strokeWidth = 14 })=>{
                                     stopColor: "#10b981"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 34,
+                                    lineNumber: 38,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Dashboard.tsx",
-                            lineNumber: 32,
+                            lineNumber: 36,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 31,
+                        lineNumber: 35,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 22,
+                lineNumber: 26,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1434,12 +1441,12 @@ const DonutChart = ({ percentage, size = 160, strokeWidth = 14 })=>{
                             color: "#3b82f6"
                         }, void 0, false, {
                             fileName: "[project]/components/Dashboard.tsx",
-                            lineNumber: 40,
+                            lineNumber: 44,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 39,
+                        lineNumber: 43,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1453,44 +1460,328 @@ const DonutChart = ({ percentage, size = 160, strokeWidth = 14 })=>{
                         children: "Live Feed"
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 42,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 38,
+                lineNumber: 42,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/Dashboard.tsx",
-        lineNumber: 21,
+        lineNumber: 25,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
 _c = DonutChart;
-const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers })=>{
+const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers, punchLogs, onNavigate, onExport })=>{
+    _s();
+    const [showAddStaffModal, setShowAddStaffModal] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState(false);
+    const [pin, setPin] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState('');
+    const [isAuthenticated, setIsAuthenticated] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState(false);
+    const [newStaff, setNewStaff] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState({
+        name: '',
+        role: 'Housekeeper',
+        blockAssignment: '',
+        avatar: ''
+    });
+    const [addingStaff, setAddingStaff] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState(false);
     const today = new Date().setHours(0, 0, 0, 0);
     const todaysLogs = logs.filter((l)=>l.timestamp >= today);
-    const dailyTasksCount = tasks.filter((t)=>t.frequency === __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Frequency"].DAILY).length;
-    const completedDaily = todaysLogs.filter((l)=>{
-        const taskDef = tasks.find((t)=>t.id === l.taskId);
-        return taskDef?.frequency === __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Frequency"].DAILY && l.status !== 'REJECTED';
-    }).length;
-    const progress = dailyTasksCount > 0 ? Math.round(completedDaily / dailyTasksCount * 100) : 74;
-    const garbageTasks = tasks.filter((t)=>t.type.includes('Garbage'));
+    const totalDailyTasks = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useMemo({
+        "Dashboard.useMemo[totalDailyTasks]": ()=>{
+            let total = 0;
+            // 1. Common Area Tasks
+            total += __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["COMMON_TASKS"].length;
+            __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BUILDING_STRUCTURE"].forEach({
+                "Dashboard.useMemo[totalDailyTasks]": (block)=>{
+                    // 2. Block Level Tasks
+                    total += __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BLOCK_TASKS"].length;
+                    __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FLOORS"].forEach({
+                        "Dashboard.useMemo[totalDailyTasks]": (floor)=>{
+                            const flats = block.flatsPerFloor(floor);
+                            // 3. Per-Flat Tasks
+                            total += __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FLOOR_TASKS"].filter({
+                                "Dashboard.useMemo[totalDailyTasks]": (t)=>t.perFlat
+                            }["Dashboard.useMemo[totalDailyTasks]"]).length * flats.length;
+                            // 4. Per-Floor Tasks
+                            total += __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FLOOR_TASKS"].filter({
+                                "Dashboard.useMemo[totalDailyTasks]": (t)=>!t.perFlat
+                            }["Dashboard.useMemo[totalDailyTasks]"]).length;
+                        }
+                    }["Dashboard.useMemo[totalDailyTasks]"]);
+                }
+            }["Dashboard.useMemo[totalDailyTasks]"]);
+            return total;
+        }
+    }["Dashboard.useMemo[totalDailyTasks]"], []);
+    const completedDaily = todaysLogs.filter((l)=>l.status === 'COMPLETED').length;
+    const progress = totalDailyTasks > 0 ? Math.round(completedDaily / totalDailyTasks * 100) : 0;
+    const garbageTasks = tasks.filter((t)=>t.type.includes('Routine') || t.type.includes('Garbage'));
     const garbageDone = todaysLogs.filter((l)=>garbageTasks.some((t)=>t.id === l.taskId)).length;
-    const garbagePercent = garbageTasks.length > 0 ? Math.round(garbageDone / garbageTasks.length * 100) : 82;
+    // Fallback to "Routine Housekeeping" string matching if tasks array is empty/static
+    const garbageLogsCount = todaysLogs.filter((l)=>l.taskId.includes('Routine') || l.taskId.includes('Garbage')).length;
+    // Heuristic for progress
+    const garbagePercent = Math.min(100, Math.round(garbageLogsCount / 10 * 100)) || 82;
     const broomTasks = tasks.filter((t)=>t.type.includes('Brooming'));
     const broomDone = todaysLogs.filter((l)=>broomTasks.some((t)=>t.id === l.taskId)).length;
     const broomPercent = broomTasks.length > 0 ? Math.round(broomDone / broomTasks.length * 100) : 66;
     const openRequests = supplyRequests.filter((r)=>r.status === 'OPEN');
+    const handleAddStaff = async ()=>{
+        if (!newStaff.name || !newStaff.blockAssignment) {
+            alert("Name and Block Assignment are required");
+            return;
+        }
+        setAddingStaff(true);
+        try {
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$supabaseDB$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["insertStaffMember"])({
+                name: newStaff.name,
+                role: 'Housekeeper',
+                avatar: newStaff.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(newStaff.name)}&background=random`,
+                blockAssignment: newStaff.blockAssignment
+            });
+            setShowAddStaffModal(false);
+            setPin('');
+            setIsAuthenticated(false);
+            setNewStaff({
+                name: '',
+                role: 'Housekeeper',
+                blockAssignment: '',
+                avatar: ''
+            });
+            // Trigger a refresh ideally, but for now relies on parent update or HMR
+            alert("Staff added successfully!");
+        } catch (e) {
+            alert("Failed to add staff: " + e.message);
+        } finally{
+            setAddingStaff(false);
+        }
+    };
+    const handlePinSubmit = ()=>{
+        if (pin === '1234') {
+            setIsAuthenticated(true);
+        } else {
+            alert("Invalid Credential");
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         style: {
             paddingBottom: 16
         },
         children: [
+            showAddStaffModal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'rgba(0,0,0,0.5)',
+                    zIndex: 1000,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "neu-card",
+                    style: {
+                        width: 320,
+                        padding: 24,
+                        background: 'var(--bg-card)'
+                    },
+                    children: !isAuthenticated ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 16
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                style: {
+                                    margin: 0,
+                                    textAlign: 'center'
+                                },
+                                children: "Admin Access"
+                            }, void 0, false, {
+                                fileName: "[project]/components/Dashboard.tsx",
+                                lineNumber: 146,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                type: "password",
+                                placeholder: "Enter Credential PIN",
+                                value: pin,
+                                onChange: (e)=>setPin(e.target.value),
+                                style: {
+                                    padding: 12,
+                                    borderRadius: 8,
+                                    border: '1px solid var(--text-muted)',
+                                    background: 'var(--bg-inset)',
+                                    color: 'var(--text-primary)',
+                                    outline: 'none'
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/components/Dashboard.tsx",
+                                lineNumber: 147,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'flex',
+                                    gap: 10
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setShowAddStaffModal(false),
+                                        className: "btn-ghost",
+                                        style: {
+                                            flex: 1
+                                        },
+                                        children: "Cancel"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Dashboard.tsx",
+                                        lineNumber: 158,
+                                        columnNumber: 19
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: handlePinSubmit,
+                                        className: "neu-button",
+                                        style: {
+                                            flex: 1,
+                                            color: 'white',
+                                            background: 'var(--blue)'
+                                        },
+                                        children: "Verify"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Dashboard.tsx",
+                                        lineNumber: 159,
+                                        columnNumber: 19
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/Dashboard.tsx",
+                                lineNumber: 157,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/Dashboard.tsx",
+                        lineNumber: 145,
+                        columnNumber: 15
+                    }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 12
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                style: {
+                                    margin: 0
+                                },
+                                children: "Add New Staff"
+                            }, void 0, false, {
+                                fileName: "[project]/components/Dashboard.tsx",
+                                lineNumber: 164,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                placeholder: "Staff Name",
+                                value: newStaff.name,
+                                onChange: (e)=>setNewStaff({
+                                        ...newStaff,
+                                        name: e.target.value
+                                    }),
+                                style: {
+                                    padding: 12,
+                                    borderRadius: 8,
+                                    border: 'none',
+                                    background: 'var(--bg-inset)',
+                                    color: 'var(--text-primary)'
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/components/Dashboard.tsx",
+                                lineNumber: 165,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                placeholder: "Block Assignment (e.g., Block 1)",
+                                value: newStaff.blockAssignment,
+                                onChange: (e)=>setNewStaff({
+                                        ...newStaff,
+                                        blockAssignment: e.target.value
+                                    }),
+                                style: {
+                                    padding: 12,
+                                    borderRadius: 8,
+                                    border: 'none',
+                                    background: 'var(--bg-inset)',
+                                    color: 'var(--text-primary)'
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/components/Dashboard.tsx",
+                                lineNumber: 171,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                style: {
+                                    display: 'flex',
+                                    gap: 10,
+                                    marginTop: 8
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setShowAddStaffModal(false),
+                                        className: "btn-ghost",
+                                        style: {
+                                            flex: 1
+                                        },
+                                        children: "Cancel"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Dashboard.tsx",
+                                        lineNumber: 178,
+                                        columnNumber: 19
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: handleAddStaff,
+                                        className: "neu-button",
+                                        disabled: addingStaff,
+                                        style: {
+                                            flex: 1,
+                                            color: 'white',
+                                            background: 'var(--green)'
+                                        },
+                                        children: addingStaff ? 'Saving...' : 'Save'
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Dashboard.tsx",
+                                        lineNumber: 179,
+                                        columnNumber: 19
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/Dashboard.tsx",
+                                lineNumber: 177,
+                                columnNumber: 17
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/Dashboard.tsx",
+                        lineNumber: 163,
+                        columnNumber: 15
+                    }, ("TURBOPACK compile-time value", void 0))
+                }, void 0, false, {
+                    fileName: "[project]/components/Dashboard.tsx",
+                    lineNumber: 143,
+                    columnNumber: 11
+                }, ("TURBOPACK compile-time value", void 0))
+            }, void 0, false, {
+                fileName: "[project]/components/Dashboard.tsx",
+                lineNumber: 138,
+                columnNumber: 9
+            }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "animate-in",
                 style: {
@@ -1505,7 +1796,7 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 children: "On-Duty Staff"
                             }, void 0, false, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 76,
+                                lineNumber: 192,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1519,13 +1810,13 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 children: "View All"
                             }, void 0, false, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 77,
+                                lineNumber: 193,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 75,
+                        lineNumber: 191,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1536,74 +1827,173 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                             paddingBottom: 4
                         },
                         className: "no-scrollbar",
-                        children: staffMembers.map((staff)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            style: {
+                                display: 'flex',
+                                gap: 20,
+                                overflowX: 'auto',
+                                paddingBottom: 4
+                            },
+                            className: "no-scrollbar",
+                            children: staffMembers.filter((s)=>{
+                                // Check if staff is punched in today
+                                const staffPunches = punchLogs.filter((p)=>p.staffId === s.id && p.timestamp >= today).sort((a, b)=>b.timestamp - a.timestamp);
+                                return staffPunches.length > 0 && staffPunches[0].type === 'IN';
+                            }).length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 style: {
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    gap: 6,
-                                    minWidth: 72
+                                    padding: '0 8px',
+                                    fontSize: 13,
+                                    color: 'var(--text-muted)',
+                                    fontStyle: 'italic'
                                 },
+                                children: "No staff currently on duty."
+                            }, void 0, false, {
+                                fileName: "[project]/components/Dashboard.tsx",
+                                lineNumber: 204,
+                                columnNumber: 15
+                            }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                        src: staff.avatar,
-                                        alt: staff.name,
-                                        className: "avatar avatar-lg",
+                                    staffMembers.map((s)=>{
+                                        const staffPunches = punchLogs.filter((p)=>p.staffId === s.id && p.timestamp >= today).sort((a, b)=>b.timestamp - a.timestamp);
+                                        const isOnDuty = staffPunches.length > 0 && staffPunches[0].type === 'IN';
+                                        if (!isOnDuty) return null;
+                                        const staffTaskCount = todaysLogs.filter((l)=>l.staffId === s.id && l.status === 'COMPLETED').length;
+                                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            style: {
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                alignItems: 'center',
+                                                gap: 6,
+                                                minWidth: 72
+                                            },
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                    src: s.avatar,
+                                                    alt: s.name,
+                                                    className: "avatar avatar-lg",
+                                                    style: {
+                                                        width: 56,
+                                                        height: 56
+                                                    }
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Dashboard.tsx",
+                                                    lineNumber: 220,
+                                                    columnNumber: 23
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    style: {
+                                                        fontSize: 12,
+                                                        fontWeight: 600,
+                                                        color: 'var(--text-primary)',
+                                                        textAlign: 'center',
+                                                        lineHeight: 1.2
+                                                    },
+                                                    children: [
+                                                        s.name.split(' ')[0],
+                                                        " ",
+                                                        s.name.split(' ')[1]?.[0],
+                                                        "."
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/Dashboard.tsx",
+                                                    lineNumber: 221,
+                                                    columnNumber: 23
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    style: {
+                                                        fontSize: 10,
+                                                        fontWeight: 500,
+                                                        color: 'var(--green)'
+                                                    },
+                                                    children: [
+                                                        staffTaskCount,
+                                                        " tasks today"
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/Dashboard.tsx",
+                                                    lineNumber: 224,
+                                                    columnNumber: 23
+                                                }, ("TURBOPACK compile-time value", void 0))
+                                            ]
+                                        }, s.id, true, {
+                                            fileName: "[project]/components/Dashboard.tsx",
+                                            lineNumber: 219,
+                                            columnNumber: 21
+                                        }, ("TURBOPACK compile-time value", void 0));
+                                    }),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: ()=>setShowAddStaffModal(true),
                                         style: {
-                                            width: 56,
-                                            height: 56
-                                        }
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 82,
-                                        columnNumber: 15
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        style: {
-                                            fontSize: 12,
-                                            fontWeight: 600,
-                                            color: 'var(--text-primary)',
-                                            textAlign: 'center',
-                                            lineHeight: 1.2
+                                            minWidth: 72,
+                                            height: 90,
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            gap: 6,
+                                            background: 'transparent',
+                                            border: 'none',
+                                            cursor: 'pointer'
                                         },
                                         children: [
-                                            staff.name.split(' ')[0],
-                                            " ",
-                                            staff.name.split(' ')[1]?.[0],
-                                            "."
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                style: {
+                                                    width: 56,
+                                                    height: 56,
+                                                    borderRadius: '50%',
+                                                    background: 'var(--bg-inset)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    color: 'var(--text-muted)',
+                                                    border: '1px dashed var(--text-muted)'
+                                                },
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
+                                                    size: 24
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/Dashboard.tsx",
+                                                    lineNumber: 242,
+                                                    columnNumber: 21
+                                                }, ("TURBOPACK compile-time value", void 0))
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Dashboard.tsx",
+                                                lineNumber: 237,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0)),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                style: {
+                                                    fontSize: 11,
+                                                    fontWeight: 600,
+                                                    color: 'var(--text-muted)'
+                                                },
+                                                children: "Add New"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/Dashboard.tsx",
+                                                lineNumber: 244,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 83,
-                                        columnNumber: 15
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        style: {
-                                            fontSize: 10,
-                                            fontWeight: 500,
-                                            color: 'var(--text-muted)'
-                                        },
-                                        children: staff.blockAssignment
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 86,
-                                        columnNumber: 15
+                                        lineNumber: 230,
+                                        columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
-                            }, staff.id, true, {
-                                fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 81,
-                                columnNumber: 13
-                            }, ("TURBOPACK compile-time value", void 0)))
+                            }, void 0, true)
+                        }, void 0, false, {
+                            fileName: "[project]/components/Dashboard.tsx",
+                            lineNumber: 196,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 79,
+                        lineNumber: 195,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 74,
+                lineNumber: 190,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1627,7 +2017,7 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 children: "Daily Progress"
                             }, void 0, false, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 95,
+                                lineNumber: 256,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1648,7 +2038,7 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 97,
+                                        lineNumber: 258,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1662,19 +2052,19 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         children: "Average"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 98,
+                                        lineNumber: 259,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 96,
+                                lineNumber: 257,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 94,
+                        lineNumber: 255,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1687,12 +2077,12 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                             percentage: progress
                         }, void 0, false, {
                             fileName: "[project]/components/Dashboard.tsx",
-                            lineNumber: 102,
+                            lineNumber: 263,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 101,
+                        lineNumber: 262,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1718,7 +2108,7 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 106,
+                                        lineNumber: 267,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1734,13 +2124,13 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 107,
+                                        lineNumber: 268,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 105,
+                                lineNumber: 266,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1759,7 +2149,7 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 110,
+                                        lineNumber: 271,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1775,25 +2165,25 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/Dashboard.tsx",
-                                        lineNumber: 111,
+                                        lineNumber: 272,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 109,
+                                lineNumber: 270,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 104,
+                        lineNumber: 265,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 93,
+                lineNumber: 254,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1810,7 +2200,7 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 children: "Supplies Status"
                             }, void 0, false, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 119,
+                                lineNumber: 280,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             openRequests.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1821,13 +2211,13 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 121,
+                                lineNumber: 282,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 118,
+                        lineNumber: 279,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1846,7 +2236,7 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                     onReject: ()=>{}
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 127,
+                                    lineNumber: 288,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SupplyCard, {
@@ -1857,7 +2247,7 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                     onReject: ()=>{}
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 128,
+                                    lineNumber: 289,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
@@ -1872,19 +2262,19 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 onReject: ()=>{}
                             }, req.id, false, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 135,
+                                lineNumber: 296,
                                 columnNumber: 17
                             }, ("TURBOPACK compile-time value", void 0));
                         })
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 124,
+                        lineNumber: 285,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 117,
+                lineNumber: 278,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1900,12 +2290,12 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                             children: "Zone Monitoring"
                         }, void 0, false, {
                             fileName: "[project]/components/Dashboard.tsx",
-                            lineNumber: 152,
+                            lineNumber: 313,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 151,
+                        lineNumber: 312,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1936,12 +2326,12 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         width: 12,
                                         height: 12,
                                         borderRadius: '50%',
-                                        background: 'var(--blue)',
-                                        boxShadow: '0 0 0 4px rgba(59,130,246,0.2)'
+                                        background: todaysLogs.some((l)=>l.block === 1) ? 'var(--green)' : 'var(--red)',
+                                        boxShadow: '0 0 0 4px rgba(255,255,255,0.2)'
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 161,
+                                    lineNumber: 322,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1952,12 +2342,12 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         width: 12,
                                         height: 12,
                                         borderRadius: '50%',
-                                        background: 'var(--coral)',
-                                        boxShadow: '0 0 0 4px rgba(249,112,102,0.2)'
+                                        background: todaysLogs.some((l)=>l.block === 2) ? 'var(--green)' : 'var(--red)',
+                                        boxShadow: '0 0 0 4px rgba(255,255,255,0.2)'
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 162,
+                                    lineNumber: 323,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1968,12 +2358,12 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         width: 12,
                                         height: 12,
                                         borderRadius: '50%',
-                                        background: 'var(--green)',
-                                        boxShadow: '0 0 0 4px rgba(16,185,129,0.2)'
+                                        background: todaysLogs.some((l)=>l.block === 3) ? 'var(--green)' : 'var(--red)',
+                                        boxShadow: '0 0 0 4px rgba(255,255,255,0.2)'
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 163,
+                                    lineNumber: 324,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1984,12 +2374,12 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                         width: 12,
                                         height: 12,
                                         borderRadius: '50%',
-                                        background: 'var(--yellow)',
-                                        boxShadow: '0 0 0 4px rgba(245,158,11,0.2)'
+                                        background: todaysLogs.some((l)=>l.block === 4) ? 'var(--green)' : 'var(--red)',
+                                        boxShadow: '0 0 0 4px rgba(255,255,255,0.2)'
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 164,
+                                    lineNumber: 325,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2011,14 +2401,14 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                             size: 12
                                         }, void 0, false, {
                                             fileName: "[project]/components/Dashboard.tsx",
-                                            lineNumber: 171,
+                                            lineNumber: 332,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         " Live Zone Coverage"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 165,
+                                    lineNumber: 326,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2039,24 +2429,24 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                     children: "+"
                                 }, void 0, false, {
                                     fileName: "[project]/components/Dashboard.tsx",
-                                    lineNumber: 173,
+                                    lineNumber: 334,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/Dashboard.tsx",
-                            lineNumber: 155,
+                            lineNumber: 316,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 154,
+                        lineNumber: 315,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 150,
+                lineNumber: 311,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2072,12 +2462,12 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                             children: "Management Hub"
                         }, void 0, false, {
                             fileName: "[project]/components/Dashboard.tsx",
-                            lineNumber: 186,
+                            lineNumber: 347,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 185,
+                        lineNumber: 346,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2092,10 +2482,11 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 title: "Manage Staff",
                                 desc: "Add, edit profiles & schedules",
                                 color: "var(--purple)",
-                                bgColor: "var(--purple-light)"
+                                bgColor: "var(--purple-light)",
+                                onClick: ()=>onNavigate('STAFF')
                             }, void 0, false, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 189,
+                                lineNumber: 350,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(HubCard, {
@@ -2103,10 +2494,11 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 title: "Inventory Management",
                                 desc: "Restock alerts & tracking",
                                 color: "var(--coral)",
-                                bgColor: "var(--coral-light)"
+                                bgColor: "var(--coral-light)",
+                                onClick: ()=>onNavigate('STOCK')
                             }, void 0, false, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 190,
+                                lineNumber: 351,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(HubCard, {
@@ -2114,14 +2506,16 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                 title: "System Logs",
                                 desc: "View all system activities",
                                 color: "var(--green)",
-                                bgColor: "var(--green-light)"
+                                bgColor: "var(--green-light)",
+                                onClick: ()=>onNavigate('LOGS')
                             }, void 0, false, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 191,
+                                lineNumber: 352,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 className: "neu-card",
+                                onClick: onExport,
                                 style: {
                                     textAlign: 'center',
                                     padding: '18px 16px',
@@ -2132,36 +2526,51 @@ const Dashboard = ({ logs, tasks, supplyRequests, onApproveSupply, staffMembers 
                                     color: 'var(--text-primary)',
                                     fontFamily: 'inherit',
                                     borderRadius: 'var(--radius)',
-                                    border: 'none'
+                                    border: 'none',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: 10
                                 },
-                                children: "Export Monthly Report"
-                            }, void 0, false, {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
+                                        size: 18
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/Dashboard.tsx",
+                                        lineNumber: 363,
+                                        columnNumber: 13
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    " Export Monthly Report"
+                                ]
+                            }, void 0, true, {
                                 fileName: "[project]/components/Dashboard.tsx",
-                                lineNumber: 193,
+                                lineNumber: 354,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 188,
+                        lineNumber: 349,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 184,
+                lineNumber: 345,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/Dashboard.tsx",
-        lineNumber: 71,
+        lineNumber: 134,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
+_s(Dashboard, "xXkOZh6tAbzjXvmprgLkUD+p9tM=");
 _c1 = Dashboard;
-const HubCard = ({ icon, title, desc, bgColor })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+const HubCard = ({ icon, title, desc, bgColor, onClick })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "neu-card",
+        onClick: onClick,
         style: {
             display: 'flex',
             alignItems: 'center',
@@ -2188,12 +2597,12 @@ const HubCard = ({ icon, title, desc, bgColor })=>/*#__PURE__*/ (0, __TURBOPACK_
                     children: icon
                 }, void 0, false, {
                     fileName: "[project]/components/Dashboard.tsx",
-                    lineNumber: 212,
+                    lineNumber: 377,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 208,
+                lineNumber: 373,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2207,7 +2616,7 @@ const HubCard = ({ icon, title, desc, bgColor })=>/*#__PURE__*/ (0, __TURBOPACK_
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 215,
+                        lineNumber: 380,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2219,19 +2628,19 @@ const HubCard = ({ icon, title, desc, bgColor })=>/*#__PURE__*/ (0, __TURBOPACK_
                         children: desc
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 216,
+                        lineNumber: 381,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 214,
+                lineNumber: 379,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/Dashboard.tsx",
-        lineNumber: 207,
+        lineNumber: 372,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 _c2 = HubCard;
@@ -2262,12 +2671,12 @@ const SupplyCard = ({ item, requester, time, onApprove, onReject })=>/*#__PURE__
                     children: "📦"
                 }, void 0, false, {
                     fileName: "[project]/components/Dashboard.tsx",
-                    lineNumber: 229,
+                    lineNumber: 394,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 225,
+                lineNumber: 390,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2288,7 +2697,7 @@ const SupplyCard = ({ item, requester, time, onApprove, onReject })=>/*#__PURE__
                         children: item
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 232,
+                        lineNumber: 397,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2305,13 +2714,13 @@ const SupplyCard = ({ item, requester, time, onApprove, onReject })=>/*#__PURE__
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 233,
+                        lineNumber: 398,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 231,
+                lineNumber: 396,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2332,12 +2741,12 @@ const SupplyCard = ({ item, requester, time, onApprove, onReject })=>/*#__PURE__
                             size: 14
                         }, void 0, false, {
                             fileName: "[project]/components/Dashboard.tsx",
-                            lineNumber: 237,
+                            lineNumber: 402,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 236,
+                        lineNumber: 401,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2351,24 +2760,24 @@ const SupplyCard = ({ item, requester, time, onApprove, onReject })=>/*#__PURE__
                             size: 14
                         }, void 0, false, {
                             fileName: "[project]/components/Dashboard.tsx",
-                            lineNumber: 240,
+                            lineNumber: 405,
                             columnNumber: 9
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/components/Dashboard.tsx",
-                        lineNumber: 239,
+                        lineNumber: 404,
                         columnNumber: 7
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/Dashboard.tsx",
-                lineNumber: 235,
+                lineNumber: 400,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/Dashboard.tsx",
-        lineNumber: 224,
+        lineNumber: 389,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 _c3 = SupplyCard;
@@ -5510,12 +5919,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$clie
 var __TURBOPACK__imported__module__$5b$project$5d2f$constants$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/constants.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$activity$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Activity$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/activity.js [app-client] (ecmascript) <export default as Activity>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/calendar.js [app-client] (ecmascript) <export default as Calendar>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/award.js [app-client] (ecmascript) <export default as Award>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wind$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wind$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/wind.js [app-client] (ecmascript) <export default as Wind>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sparkles.js [app-client] (ecmascript) <export default as Sparkles>");
 ;
-var _s = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
@@ -5549,7 +5957,7 @@ const StaffLogsView = ({ currentUser, logs, staffMembers })=>{
             }["StaffLogsView.useMemo[stats]"]).length;
             // Breakdown
             const garbage = myLogs.filter({
-                "StaffLogsView.useMemo[stats]": (l)=>l.taskId.includes('garbage') || l.taskId.includes('trash')
+                "StaffLogsView.useMemo[stats]": (l)=>l.taskId.includes('Routine') || l.taskId.includes('Garbage')
             }["StaffLogsView.useMemo[stats]"]).length;
             const brooming = myLogs.filter({
                 "StaffLogsView.useMemo[stats]": (l)=>l.taskId.includes('broom') || l.taskId.includes('sweep')
@@ -5604,7 +6012,7 @@ const StaffLogsView = ({ currentUser, logs, staffMembers })=>{
         return 'Task Completed';
     };
     const getTaskType = (taskId)=>{
-        if (taskId.includes('garbage')) return __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TaskType"].GARBAGE_COLLECTION;
+        if (taskId.includes('Routine') || taskId.includes('Garbage')) return __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TaskType"].ROUTINE_HOUSEKEEPING;
         if (taskId.includes('broom')) return __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TaskType"].BROOMING;
         if (taskId.includes('mop')) return __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TaskType"].MOPPING;
         if (taskId.includes('glass')) return __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TaskType"].GLASS_CLEANING;
@@ -5898,213 +6306,62 @@ const StaffLogsView = ({ currentUser, logs, staffMembers })=>{
                     display: 'flex',
                     flexDirection: 'column',
                     gap: 24
+                }
+            }, void 0, false, {
+                fileName: "[project]/components/StaffLogsView.tsx",
+                lineNumber: 119,
+                columnNumber: 13
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CalendarView, {
+                logs: myLogs
+            }, void 0, false, {
+                fileName: "[project]/components/StaffLogsView.tsx",
+                lineNumber: 127,
+                columnNumber: 13
+            }, ("TURBOPACK compile-time value", void 0)),
+            myLogs.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    textAlign: 'center',
+                    padding: '40px 0',
+                    color: 'var(--text-muted)'
                 },
                 children: [
-                    Object.entries(groupedLogs).map(([date, dayLogs])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "animate-in",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    style: {
-                                        fontSize: 12,
-                                        fontWeight: 700,
-                                        color: 'var(--text-muted)',
-                                        textTransform: 'uppercase',
-                                        marginBottom: 12,
-                                        letterSpacing: 0.5,
-                                        paddingLeft: 4
-                                    },
-                                    children: date === new Date().toLocaleDateString('en-IN', {
-                                        day: 'numeric',
-                                        month: 'short',
-                                        year: 'numeric'
-                                    }) ? 'Today' : date
-                                }, void 0, false, {
-                                    fileName: "[project]/components/StaffLogsView.tsx",
-                                    lineNumber: 122,
-                                    columnNumber: 25
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    style: {
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: 12
-                                    },
-                                    children: dayLogs.map((log)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "neu-card",
-                                            style: {
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: 14,
-                                                padding: '14px 16px',
-                                                borderRadius: 16
-                                            },
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    style: {
-                                                        fontSize: 22
-                                                    },
-                                                    children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$constants$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getTaskIcon"])(getTaskType(log.taskId))
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/StaffLogsView.tsx",
-                                                    lineNumber: 132,
-                                                    columnNumber: 37
-                                                }, ("TURBOPACK compile-time value", void 0)),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    style: {
-                                                        flex: 1
-                                                    },
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            style: {
-                                                                fontSize: 14,
-                                                                fontWeight: 700,
-                                                                color: 'var(--text-primary)'
-                                                            },
-                                                            children: getTaskLabel(log.taskId)
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/StaffLogsView.tsx",
-                                                            lineNumber: 136,
-                                                            columnNumber: 41
-                                                        }, ("TURBOPACK compile-time value", void 0)),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            style: {
-                                                                fontSize: 11,
-                                                                fontWeight: 500,
-                                                                color: 'var(--text-muted)',
-                                                                display: 'flex',
-                                                                gap: 6
-                                                            },
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    children: new Date(log.timestamp).toLocaleTimeString('en-IN', {
-                                                                        hour: '2-digit',
-                                                                        minute: '2-digit',
-                                                                        hour12: true
-                                                                    })
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/StaffLogsView.tsx",
-                                                                    lineNumber: 140,
-                                                                    columnNumber: 45
-                                                                }, ("TURBOPACK compile-time value", void 0)),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    children: "·"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/StaffLogsView.tsx",
-                                                                    lineNumber: 143,
-                                                                    columnNumber: 45
-                                                                }, ("TURBOPACK compile-time value", void 0)),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                    children: [
-                                                                        "Block ",
-                                                                        log.block ? String.fromCharCode(64 + log.block) : '-',
-                                                                        log.floor !== undefined ? `, Floor ${log.floor}` : ''
-                                                                    ]
-                                                                }, void 0, true, {
-                                                                    fileName: "[project]/components/StaffLogsView.tsx",
-                                                                    lineNumber: 144,
-                                                                    columnNumber: 45
-                                                                }, ("TURBOPACK compile-time value", void 0))
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/components/StaffLogsView.tsx",
-                                                            lineNumber: 139,
-                                                            columnNumber: 41
-                                                        }, ("TURBOPACK compile-time value", void 0))
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/StaffLogsView.tsx",
-                                                    lineNumber: 135,
-                                                    columnNumber: 37
-                                                }, ("TURBOPACK compile-time value", void 0)),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    style: {
-                                                        width: 24,
-                                                        height: 24,
-                                                        borderRadius: '50%',
-                                                        background: 'var(--green-light)',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        color: 'var(--green)'
-                                                    },
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__["Award"], {
-                                                        size: 14
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/StaffLogsView.tsx",
-                                                        lineNumber: 154,
-                                                        columnNumber: 41
-                                                    }, ("TURBOPACK compile-time value", void 0))
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/StaffLogsView.tsx",
-                                                    lineNumber: 150,
-                                                    columnNumber: 37
-                                                }, ("TURBOPACK compile-time value", void 0))
-                                            ]
-                                        }, log.id, true, {
-                                            fileName: "[project]/components/StaffLogsView.tsx",
-                                            lineNumber: 131,
-                                            columnNumber: 33
-                                        }, ("TURBOPACK compile-time value", void 0)))
-                                }, void 0, false, {
-                                    fileName: "[project]/components/StaffLogsView.tsx",
-                                    lineNumber: 129,
-                                    columnNumber: 25
-                                }, ("TURBOPACK compile-time value", void 0))
-                            ]
-                        }, date, true, {
-                            fileName: "[project]/components/StaffLogsView.tsx",
-                            lineNumber: 121,
-                            columnNumber: 21
-                        }, ("TURBOPACK compile-time value", void 0))),
-                    myLogs.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         style: {
-                            textAlign: 'center',
-                            padding: '40px 0',
-                            color: 'var(--text-muted)'
+                            fontSize: 40,
+                            marginBottom: 10
                         },
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                style: {
-                                    fontSize: 40,
-                                    marginBottom: 10
-                                },
-                                children: "📜"
-                            }, void 0, false, {
-                                fileName: "[project]/components/StaffLogsView.tsx",
-                                lineNumber: 164,
-                                columnNumber: 25
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                style: {
-                                    fontWeight: 600
-                                },
-                                children: "No logs found"
-                            }, void 0, false, {
-                                fileName: "[project]/components/StaffLogsView.tsx",
-                                lineNumber: 165,
-                                columnNumber: 25
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                style: {
-                                    fontSize: 12
-                                },
-                                children: "Get started by completing tasks!"
-                            }, void 0, false, {
-                                fileName: "[project]/components/StaffLogsView.tsx",
-                                lineNumber: 166,
-                                columnNumber: 25
-                            }, ("TURBOPACK compile-time value", void 0))
-                        ]
-                    }, void 0, true, {
+                        children: "📜"
+                    }, void 0, false, {
                         fileName: "[project]/components/StaffLogsView.tsx",
-                        lineNumber: 163,
+                        lineNumber: 131,
+                        columnNumber: 21
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            fontWeight: 600
+                        },
+                        children: "No logs found"
+                    }, void 0, false, {
+                        fileName: "[project]/components/StaffLogsView.tsx",
+                        lineNumber: 132,
+                        columnNumber: 21
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            fontSize: 12
+                        },
+                        children: "Get started by completing tasks!"
+                    }, void 0, false, {
+                        fileName: "[project]/components/StaffLogsView.tsx",
+                        lineNumber: 133,
                         columnNumber: 21
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/StaffLogsView.tsx",
-                lineNumber: 119,
-                columnNumber: 13
+                lineNumber: 130,
+                columnNumber: 17
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
@@ -6138,7 +6395,7 @@ const StatItem = ({ icon, count, label, color })=>/*#__PURE__*/ (0, __TURBOPACK_
                 children: icon
             }, void 0, false, {
                 fileName: "[project]/components/StaffLogsView.tsx",
-                lineNumber: 176,
+                lineNumber: 143,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6150,7 +6407,7 @@ const StatItem = ({ icon, count, label, color })=>/*#__PURE__*/ (0, __TURBOPACK_
                 children: count
             }, void 0, false, {
                 fileName: "[project]/components/StaffLogsView.tsx",
-                lineNumber: 183,
+                lineNumber: 150,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6162,20 +6419,271 @@ const StatItem = ({ icon, count, label, color })=>/*#__PURE__*/ (0, __TURBOPACK_
                 children: label
             }, void 0, false, {
                 fileName: "[project]/components/StaffLogsView.tsx",
-                lineNumber: 184,
+                lineNumber: 151,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/components/StaffLogsView.tsx",
-        lineNumber: 175,
+        lineNumber: 142,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 _c1 = StatItem;
+const CalendarView = ({ logs })=>{
+    _s1();
+    const [selectedDate, setSelectedDate] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState(new Date());
+    const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate();
+    const firstDay = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1).getDay();
+    const days = Array.from({
+        length: daysInMonth
+    }, (_, i)=>i + 1);
+    const blanks = Array.from({
+        length: firstDay
+    }, (_, i)=>i);
+    const selectedDetails = logs.filter((l)=>{
+        const d = new Date(l.timestamp);
+        return d.getDate() === selectedDate.getDate() && d.getMonth() === selectedDate.getMonth() && d.getFullYear() === selectedDate.getFullYear();
+    });
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "animate-in",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "neu-card",
+                style: {
+                    padding: 20,
+                    marginBottom: 20
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginBottom: 16
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() - 1, 1)),
+                                style: {
+                                    border: 'none',
+                                    background: 'none',
+                                    fontSize: 18,
+                                    cursor: 'pointer'
+                                },
+                                children: "←"
+                            }, void 0, false, {
+                                fileName: "[project]/components/StaffLogsView.tsx",
+                                lineNumber: 176,
+                                columnNumber: 21
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                style: {
+                                    fontSize: 16,
+                                    fontWeight: 700
+                                },
+                                children: selectedDate.toLocaleDateString('en-IN', {
+                                    month: 'long',
+                                    year: 'numeric'
+                                })
+                            }, void 0, false, {
+                                fileName: "[project]/components/StaffLogsView.tsx",
+                                lineNumber: 177,
+                                columnNumber: 21
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 1)),
+                                style: {
+                                    border: 'none',
+                                    background: 'none',
+                                    fontSize: 18,
+                                    cursor: 'pointer'
+                                },
+                                children: "→"
+                            }, void 0, false, {
+                                fileName: "[project]/components/StaffLogsView.tsx",
+                                lineNumber: 178,
+                                columnNumber: 21
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/StaffLogsView.tsx",
+                        lineNumber: 175,
+                        columnNumber: 17
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        style: {
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(7, 1fr)',
+                            gap: 8,
+                            textAlign: 'center'
+                        },
+                        children: [
+                            [
+                                'S',
+                                'M',
+                                'T',
+                                'W',
+                                'T',
+                                'F',
+                                'S'
+                            ].map((d)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    style: {
+                                        fontSize: 10,
+                                        fontWeight: 700,
+                                        color: 'var(--text-muted)'
+                                    },
+                                    children: d
+                                }, d, false, {
+                                    fileName: "[project]/components/StaffLogsView.tsx",
+                                    lineNumber: 183,
+                                    columnNumber: 67
+                                }, ("TURBOPACK compile-time value", void 0))),
+                            blanks.map((b)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {}, `blank-${b}`, false, {
+                                    fileName: "[project]/components/StaffLogsView.tsx",
+                                    lineNumber: 184,
+                                    columnNumber: 38
+                                }, ("TURBOPACK compile-time value", void 0))),
+                            days.map((d)=>{
+                                const dateStr = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), d).setHours(0, 0, 0, 0);
+                                const hasLogs = logs.some((l)=>new Date(l.timestamp).setHours(0, 0, 0, 0) === dateStr);
+                                const isSelected = d === selectedDate.getDate();
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setSelectedDate(new Date(selectedDate.getFullYear(), selectedDate.getMonth(), d)),
+                                    style: {
+                                        width: 32,
+                                        height: 32,
+                                        borderRadius: '50%',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        background: isSelected ? 'var(--blue)' : hasLogs ? 'var(--green-light)' : 'transparent',
+                                        color: isSelected ? 'white' : hasLogs ? 'var(--green)' : 'var(--text-primary)',
+                                        fontWeight: isSelected || hasLogs ? 700 : 400,
+                                        margin: '0 auto',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    },
+                                    children: d
+                                }, d, false, {
+                                    fileName: "[project]/components/StaffLogsView.tsx",
+                                    lineNumber: 191,
+                                    columnNumber: 29
+                                }, ("TURBOPACK compile-time value", void 0));
+                            })
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/StaffLogsView.tsx",
+                        lineNumber: 182,
+                        columnNumber: 17
+                    }, ("TURBOPACK compile-time value", void 0))
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/StaffLogsView.tsx",
+                lineNumber: 173,
+                columnNumber: 13
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 12
+                },
+                children: selectedDetails.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    style: {
+                        textAlign: 'center',
+                        color: 'var(--text-muted)',
+                        padding: 20,
+                        fontSize: 13
+                    },
+                    children: "No activity on this date"
+                }, void 0, false, {
+                    fileName: "[project]/components/StaffLogsView.tsx",
+                    lineNumber: 212,
+                    columnNumber: 21
+                }, ("TURBOPACK compile-time value", void 0)) : selectedDetails.map((log)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "neu-card",
+                        style: {
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 14,
+                            padding: '14px 16px'
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                style: {
+                                    width: 36,
+                                    height: 36,
+                                    borderRadius: 12,
+                                    background: 'var(--bg-inset)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: 18
+                                },
+                                children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$constants$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getTaskIcon"])(log.taskId.includes('Routine') ? __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TaskType"].ROUTINE_HOUSEKEEPING : __TURBOPACK__imported__module__$5b$project$5d2f$types$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TaskType"].GLASS_CLEANING)
+                            }, void 0, false, {
+                                fileName: "[project]/components/StaffLogsView.tsx",
+                                lineNumber: 216,
+                                columnNumber: 29
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            fontSize: 14,
+                                            fontWeight: 700
+                                        },
+                                        children: log.taskId
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/StaffLogsView.tsx",
+                                        lineNumber: 223,
+                                        columnNumber: 33
+                                    }, ("TURBOPACK compile-time value", void 0)),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        style: {
+                                            fontSize: 11,
+                                            color: 'var(--text-muted)'
+                                        },
+                                        children: new Date(log.timestamp).toLocaleTimeString([], {
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        })
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/StaffLogsView.tsx",
+                                        lineNumber: 224,
+                                        columnNumber: 33
+                                    }, ("TURBOPACK compile-time value", void 0))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/StaffLogsView.tsx",
+                                lineNumber: 222,
+                                columnNumber: 29
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, log.id, true, {
+                        fileName: "[project]/components/StaffLogsView.tsx",
+                        lineNumber: 215,
+                        columnNumber: 25
+                    }, ("TURBOPACK compile-time value", void 0)))
+            }, void 0, false, {
+                fileName: "[project]/components/StaffLogsView.tsx",
+                lineNumber: 210,
+                columnNumber: 13
+            }, ("TURBOPACK compile-time value", void 0))
+        ]
+    }, void 0, true, {
+        fileName: "[project]/components/StaffLogsView.tsx",
+        lineNumber: 172,
+        columnNumber: 9
+    }, ("TURBOPACK compile-time value", void 0));
+};
+_s1(CalendarView, "mu4fg2bVP7ctA7Sx6pVThSFlyto=");
+_c2 = CalendarView;
 const __TURBOPACK__default__export__ = StaffLogsView;
-var _c, _c1;
+var _c, _c1, _c2;
 __turbopack_context__.k.register(_c, "StaffLogsView");
 __turbopack_context__.k.register(_c1, "StatItem");
+__turbopack_context__.k.register(_c2, "CalendarView");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -6354,6 +6862,55 @@ const App = ()=>{
                 ]);
         }
     };
+    const handleExportLogs = ()=>{
+        if (logs.length === 0) {
+            alert("No logs to export.");
+            return;
+        }
+        const headers = [
+            "Date",
+            "Time",
+            "Staff",
+            "Task",
+            "Type",
+            "Block",
+            "Floor",
+            "Flat",
+            "Status"
+        ];
+        const csvContent = [
+            headers.join(","),
+            ...logs.map((log)=>{
+                const date = new Date(log.timestamp).toLocaleDateString();
+                const time = new Date(log.timestamp).toLocaleTimeString();
+                const staff = staffMembers.find((s)=>s.id === log.staffId)?.name || "Unknown";
+                return [
+                    date,
+                    time,
+                    staff,
+                    log.taskId,
+                    "Task",
+                    log.block || "-",
+                    log.floor !== undefined ? log.floor : "-",
+                    log.flat || "-",
+                    log.status
+                ].join(",");
+            })
+        ].join("\n");
+        const blob = new Blob([
+            csvContent
+        ], {
+            type: "text/csv;charset=utf-8;"
+        });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", `society_logs_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
     // Auth loading
     if (authLoading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6378,7 +6935,7 @@ const App = ()=>{
                         }
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 116,
+                        lineNumber: 147,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6390,18 +6947,18 @@ const App = ()=>{
                         children: "Loading..."
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 117,
+                        lineNumber: 148,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/App.tsx",
-                lineNumber: 115,
+                lineNumber: 146,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/App.tsx",
-            lineNumber: 114,
+            lineNumber: 145,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -6409,7 +6966,7 @@ const App = ()=>{
     if (!isLoggedIn) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$LoginPage$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
             fileName: "[project]/App.tsx",
-            lineNumber: 125,
+            lineNumber: 156,
             columnNumber: 12
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -6451,7 +7008,7 @@ const App = ()=>{
                         }
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 157,
+                        lineNumber: 188,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6463,13 +7020,13 @@ const App = ()=>{
                         children: "Loading data..."
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 158,
+                        lineNumber: 189,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/App.tsx",
-                lineNumber: 156,
+                lineNumber: 187,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0));
         }
@@ -6481,11 +7038,14 @@ const App = ()=>{
                         tasks: [],
                         supplyRequests: supplyRequests,
                         onApproveSupply: handleApproveSupply,
-                        staffMembers: staffMembers
+                        staffMembers: staffMembers,
+                        punchLogs: punchLogs,
+                        onNavigate: (tab)=>setManagerTab(tab),
+                        onExport: handleExportLogs
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 166,
-                        columnNumber: 18
+                        lineNumber: 198,
+                        columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0));
                 case 'STAFF':
                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$StaffAttendance$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -6495,7 +7055,7 @@ const App = ()=>{
                         staffMembers: staffMembers
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 168,
+                        lineNumber: 210,
                         columnNumber: 18
                     }, ("TURBOPACK compile-time value", void 0));
                 case 'STOCK':
@@ -6506,7 +7066,7 @@ const App = ()=>{
                         staffMembers: staffMembers
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 170,
+                        lineNumber: 212,
                         columnNumber: 18
                     }, ("TURBOPACK compile-time value", void 0));
                 default:
@@ -6515,11 +7075,14 @@ const App = ()=>{
                         tasks: [],
                         supplyRequests: supplyRequests,
                         onApproveSupply: handleApproveSupply,
-                        staffMembers: staffMembers
+                        staffMembers: staffMembers,
+                        punchLogs: punchLogs,
+                        onNavigate: (tab)=>setManagerTab(tab),
+                        onExport: handleExportLogs
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 172,
-                        columnNumber: 18
+                        lineNumber: 215,
+                        columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0));
             }
         }
@@ -6533,7 +7096,7 @@ const App = ()=>{
                     staffMembers: staffMembers
                 }, void 0, false, {
                     fileName: "[project]/App.tsx",
-                    lineNumber: 179,
+                    lineNumber: 232,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'STOCK':
@@ -6544,7 +7107,7 @@ const App = ()=>{
                     staffMembers: staffMembers
                 }, void 0, false, {
                     fileName: "[project]/App.tsx",
-                    lineNumber: 181,
+                    lineNumber: 234,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'LOGS':
@@ -6554,7 +7117,7 @@ const App = ()=>{
                     staffMembers: staffMembers
                 }, void 0, false, {
                     fileName: "[project]/App.tsx",
-                    lineNumber: 183,
+                    lineNumber: 236,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
             case 'TASKS':
@@ -6566,7 +7129,7 @@ const App = ()=>{
                     staffMembers: staffMembers
                 }, void 0, false, {
                     fileName: "[project]/App.tsx",
-                    lineNumber: 186,
+                    lineNumber: 239,
                     columnNumber: 16
                 }, ("TURBOPACK compile-time value", void 0));
         }
@@ -6598,7 +7161,7 @@ const App = ()=>{
                                 children: getSubtitle()
                             }, void 0, false, {
                                 fileName: "[project]/App.tsx",
-                                lineNumber: 195,
+                                lineNumber: 248,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -6612,7 +7175,7 @@ const App = ()=>{
                                 children: getTitle()
                             }, void 0, false, {
                                 fileName: "[project]/App.tsx",
-                                lineNumber: 199,
+                                lineNumber: 252,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6630,7 +7193,7 @@ const App = ()=>{
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/App.tsx",
-                                        lineNumber: 203,
+                                        lineNumber: 256,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -6656,19 +7219,19 @@ const App = ()=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/App.tsx",
-                                        lineNumber: 204,
+                                        lineNumber: 257,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/App.tsx",
-                                lineNumber: 202,
+                                lineNumber: 255,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 193,
+                        lineNumber: 246,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6685,18 +7248,18 @@ const App = ()=>{
                                     size: 18
                                 }, void 0, false, {
                                     fileName: "[project]/App.tsx",
-                                    lineNumber: 213,
+                                    lineNumber: 266,
                                     columnNumber: 25
                                 }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"], {
                                     size: 18
                                 }, void 0, false, {
                                     fileName: "[project]/App.tsx",
-                                    lineNumber: 213,
+                                    lineNumber: 266,
                                     columnNumber: 45
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/App.tsx",
-                                lineNumber: 212,
+                                lineNumber: 265,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -6707,32 +7270,32 @@ const App = ()=>{
                                         size: 14
                                     }, void 0, false, {
                                         fileName: "[project]/App.tsx",
-                                        lineNumber: 216,
+                                        lineNumber: 269,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Logout"
                                     }, void 0, false, {
                                         fileName: "[project]/App.tsx",
-                                        lineNumber: 217,
+                                        lineNumber: 270,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/App.tsx",
-                                lineNumber: 215,
+                                lineNumber: 268,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 211,
+                        lineNumber: 264,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/App.tsx",
-                lineNumber: 192,
+                lineNumber: 245,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -6745,13 +7308,13 @@ const App = ()=>{
                     renderContent(),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$vercel$2f$speed$2d$insights$2f$dist$2f$react$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SpeedInsights"], {}, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 224,
+                        lineNumber: 277,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/App.tsx",
-                lineNumber: 222,
+                lineNumber: 275,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             isAdmin ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6762,7 +7325,7 @@ const App = ()=>{
                             size: 22
                         }, void 0, false, {
                             fileName: "[project]/App.tsx",
-                            lineNumber: 229,
+                            lineNumber: 282,
                             columnNumber: 26
                         }, void 0),
                         label: "Home",
@@ -6770,7 +7333,7 @@ const App = ()=>{
                         onClick: ()=>setManagerTab('HOME')
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 229,
+                        lineNumber: 282,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -6778,7 +7341,7 @@ const App = ()=>{
                             size: 22
                         }, void 0, false, {
                             fileName: "[project]/App.tsx",
-                            lineNumber: 230,
+                            lineNumber: 283,
                             columnNumber: 26
                         }, void 0),
                         label: "Staff",
@@ -6786,7 +7349,7 @@ const App = ()=>{
                         onClick: ()=>setManagerTab('STAFF')
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 230,
+                        lineNumber: 283,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -6794,7 +7357,7 @@ const App = ()=>{
                             size: 22
                         }, void 0, false, {
                             fileName: "[project]/App.tsx",
-                            lineNumber: 231,
+                            lineNumber: 284,
                             columnNumber: 26
                         }, void 0),
                         label: "Stock",
@@ -6802,7 +7365,7 @@ const App = ()=>{
                         onClick: ()=>setManagerTab('STOCK')
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 231,
+                        lineNumber: 284,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -6810,7 +7373,7 @@ const App = ()=>{
                             size: 22
                         }, void 0, false, {
                             fileName: "[project]/App.tsx",
-                            lineNumber: 232,
+                            lineNumber: 285,
                             columnNumber: 26
                         }, void 0),
                         label: "Logs",
@@ -6818,13 +7381,13 @@ const App = ()=>{
                         onClick: ()=>setManagerTab('LOGS')
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 232,
+                        lineNumber: 285,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/App.tsx",
-                lineNumber: 228,
+                lineNumber: 281,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "bottom-nav",
@@ -6834,7 +7397,7 @@ const App = ()=>{
                             size: 22
                         }, void 0, false, {
                             fileName: "[project]/App.tsx",
-                            lineNumber: 236,
+                            lineNumber: 289,
                             columnNumber: 26
                         }, void 0),
                         label: "Tasks",
@@ -6842,7 +7405,7 @@ const App = ()=>{
                         onClick: ()=>setStaffTab('TASKS')
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 236,
+                        lineNumber: 289,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -6850,7 +7413,7 @@ const App = ()=>{
                             size: 22
                         }, void 0, false, {
                             fileName: "[project]/App.tsx",
-                            lineNumber: 237,
+                            lineNumber: 290,
                             columnNumber: 26
                         }, void 0),
                         label: "Staff",
@@ -6858,7 +7421,7 @@ const App = ()=>{
                         onClick: ()=>setStaffTab('ATTENDANCE')
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 237,
+                        lineNumber: 290,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -6866,7 +7429,7 @@ const App = ()=>{
                             size: 22
                         }, void 0, false, {
                             fileName: "[project]/App.tsx",
-                            lineNumber: 238,
+                            lineNumber: 291,
                             columnNumber: 26
                         }, void 0),
                         label: "Stock",
@@ -6874,7 +7437,7 @@ const App = ()=>{
                         onClick: ()=>setStaffTab('STOCK')
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 238,
+                        lineNumber: 291,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(NavItem, {
@@ -6882,7 +7445,7 @@ const App = ()=>{
                             size: 22
                         }, void 0, false, {
                             fileName: "[project]/App.tsx",
-                            lineNumber: 239,
+                            lineNumber: 292,
                             columnNumber: 26
                         }, void 0),
                         label: "Logs",
@@ -6890,19 +7453,19 @@ const App = ()=>{
                         onClick: ()=>setStaffTab('LOGS')
                     }, void 0, false, {
                         fileName: "[project]/App.tsx",
-                        lineNumber: 239,
+                        lineNumber: 292,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/App.tsx",
-                lineNumber: 235,
+                lineNumber: 288,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/App.tsx",
-        lineNumber: 191,
+        lineNumber: 244,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -6921,13 +7484,13 @@ const NavItem = ({ icon, label, active, onClick })=>/*#__PURE__*/ (0, __TURBOPAC
                 children: label
             }, void 0, false, {
                 fileName: "[project]/App.tsx",
-                lineNumber: 249,
+                lineNumber: 302,
                 columnNumber: 5
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/App.tsx",
-        lineNumber: 247,
+        lineNumber: 300,
         columnNumber: 3
     }, ("TURBOPACK compile-time value", void 0));
 _c1 = NavItem;

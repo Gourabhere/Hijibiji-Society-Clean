@@ -108,6 +108,37 @@ const App: React.FC = () => {
     }
   };
 
+  const handleExportLogs = () => {
+    if (logs.length === 0) {
+      alert("No logs to export.");
+      return;
+    }
+
+    const headers = ["Date", "Time", "Staff", "Task", "Type", "Block", "Floor", "Flat", "Status"];
+    const csvContent = [
+      headers.join(","),
+      ...logs.map(log => {
+        const date = new Date(log.timestamp).toLocaleDateString();
+        const time = new Date(log.timestamp).toLocaleTimeString();
+        const staff = staffMembers.find(s => s.id === log.staffId)?.name || "Unknown";
+        return [
+          date, time, staff, log.taskId, "Task",
+          log.block || "-", log.floor !== undefined ? log.floor : "-", log.flat || "-", log.status
+        ].join(",");
+      })
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `society_logs_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // Auth loading
   if (authLoading) {
     return (
@@ -163,13 +194,35 @@ const App: React.FC = () => {
     if (isAdmin) {
       switch (managerTab) {
         case 'HOME':
-          return <Dashboard logs={logs} tasks={[]} supplyRequests={supplyRequests} onApproveSupply={handleApproveSupply} staffMembers={staffMembers} />;
+          return (
+            <Dashboard
+              logs={logs}
+              tasks={[]}
+              supplyRequests={supplyRequests}
+              onApproveSupply={handleApproveSupply}
+              staffMembers={staffMembers}
+              punchLogs={punchLogs}
+              onNavigate={(tab) => setManagerTab(tab as ManagerTab)}
+              onExport={handleExportLogs}
+            />
+          );
         case 'STAFF':
           return <StaffAttendance currentUser={currentUser} punchLogs={punchLogs} onPunch={handlePunch} staffMembers={staffMembers} />;
         case 'STOCK':
           return <SupplyRequestView currentUser={currentUser} requests={supplyRequests} onRequest={handleSupplyRequest} staffMembers={staffMembers} />;
         default:
-          return <Dashboard logs={logs} tasks={[]} supplyRequests={supplyRequests} onApproveSupply={handleApproveSupply} staffMembers={staffMembers} />;
+          return (
+            <Dashboard
+              logs={logs}
+              tasks={[]}
+              supplyRequests={supplyRequests}
+              onApproveSupply={handleApproveSupply}
+              staffMembers={staffMembers}
+              punchLogs={punchLogs}
+              onNavigate={(tab) => setManagerTab(tab as ManagerTab)}
+              onExport={handleExportLogs}
+            />
+          );
       }
     }
 

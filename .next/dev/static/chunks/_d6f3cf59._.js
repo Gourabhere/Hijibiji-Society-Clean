@@ -32,6 +32,8 @@ __turbopack_context__.s([
     ()=>fetchTaskLogs,
     "insertPunchLog",
     ()=>insertPunchLog,
+    "insertStaffMember",
+    ()=>insertStaffMember,
     "insertSupplyRequest",
     ()=>insertSupplyRequest,
     "insertTaskLog",
@@ -58,6 +60,22 @@ async function verifyStaffPin(staffId, pin) {
     const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from('staff_members').select('pin').eq('id', staffId).single();
     if (error || !data) return false;
     return data.pin === pin;
+}
+async function insertStaffMember(staff) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from('staff_members').insert({
+        name: staff.name,
+        role: staff.role,
+        avatar: staff.avatar,
+        block_assignment: staff.blockAssignment
+    }).select().single();
+    if (error) throw error;
+    return {
+        id: data.id,
+        name: data.name,
+        role: data.role,
+        avatar: data.avatar || '',
+        blockAssignment: data.block_assignment || ''
+    };
 }
 async function fetchTaskLogs() {
     const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$services$2f$supabaseClient$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from('task_logs').select('*').order('timestamp', {

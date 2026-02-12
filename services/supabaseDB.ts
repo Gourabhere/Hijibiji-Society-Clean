@@ -28,6 +28,27 @@ export async function verifyStaffPin(staffId: number, pin: string): Promise<bool
     return data.pin === pin;
 }
 
+export async function insertStaffMember(staff: Omit<StaffMember, 'id'>): Promise<StaffMember> {
+    const { data, error } = await supabase
+        .from('staff_members')
+        .insert({
+            name: staff.name,
+            role: staff.role,
+            avatar: staff.avatar,
+            block_assignment: staff.blockAssignment,
+        })
+        .select()
+        .single();
+    if (error) throw error;
+    return {
+        id: data.id,
+        name: data.name,
+        role: data.role as 'Housekeeper',
+        avatar: data.avatar || '',
+        blockAssignment: data.block_assignment || '',
+    };
+}
+
 // ===== TASK LOGS =====
 
 export async function fetchTaskLogs(): Promise<TaskLog[]> {
